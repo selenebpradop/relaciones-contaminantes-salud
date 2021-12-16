@@ -8,6 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cargando paquetes y definiendo opciones %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb}
@@ -70,4 +71,3 @@
 \setlength{\parindent}{10mm}
 \setlength{\parskip}{0.9em}
 \def\baselinestretch{1.5}
-
