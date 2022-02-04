@@ -75,7 +75,6 @@ En 1980 la REDPANAIRE desapareció y pasó a formar parte del Programa Global de
 
 En la década de 1990, la OMS organizó, con carácter global, el Sistema de Información para el Control de la Calidad del Aire llamado AMIS por sus siglas en inglés \emph{Air Management Information System}. Entre las actividades más destacadas de AMIS se incluye el coordinar las bases de datos sobre temas relacionados con la calidad del aire.
 
-\subsection{Monitoreo de la calidad del aire en Nuevo León, México}
 En Nuevo León, México, las operaciones de la Red Automática de Monitoreo Atmosférico iniciaron en 1993. Dicha red en sus inicios contaba con cinco estaciones fijas de monitoreo continuo de monóxido de carbono (CO), dióxido de azufre (SO2), óxidos de nitrógeno (NOx), ozono y PM10 \citep{r4}. Como se muestra en la figura \ref{estaciones}, actualmente se cuenta con nueve estaciones fijas.
 
 \section{Series de tiempo}
@@ -83,9 +82,9 @@ En Nuevo León, México, las operaciones de la Red Automática de Monitoreo Atmo
 
 Las series de tiempo se pueden definir como un conjunto de observaciones {{ot}} tomadas en un tiempo \emph{t} determinado. Los estudios de series de tiempo relacionan estadísticamente los cambios temporales en la repercusión de cambios en la concentración de un contaminante en la población \citep{r8}.
 
-Para mostrar datos en una serie de tiempo, especialmente en el área médica, estos suelen agruparse en \emph{semanas epidemiológicas}\footnote{Una semana epidemiológica es un estándar de medición temporal que se utiliza para comparar datos en ventanas de tiempo definidas. La primera semana epidemiológica del año termina el primer sábado de enero de cada año \citep{r7}}. 
+Para mostrar datos en una serie de tiempo, especialmente en el área médica, estos suelen agruparse en \emph{semanas epidemiológicas}\footnote{Una semana epidemiológica es un estándar de medición temporal que se utiliza para comparar datos en ventanas de tiempo definidas. La primera semana epidemiológica del año termina el primer sábado de enero de cada año \citep{r7}.}. 
 
-\subsection{Clasificación de enfermedades}
+\section{Clasificación de enfermedades}
 Existe un instrumento estadíıstico y sanitario para identificar enfermedades llamado Clasificación Internacional de Enfermedades (CIE), cuya finalidad es entender las causas de morbilidad y mortalidad de la población y así mejorar la calidad de vida de la misma. Es en base a un criterio epidemiológico y sanitario establecido por Farr a finales del siglo XIX que esta clasificación agrupa enfermedades en epidémicas, generales, locales ordenadas por origen geográfico, trastornos del desarrollo y lesiones \citep{r9}. Para lograr distinguirlas se emplea un código alfanumérico que consiste de una letra en la primera posición, seguida de dos dígitos, un punto decimal y un último dígito. El rango de valores va de A00.0 a Z99.9.
 
 \section{Modelos de regresión lineal}
@@ -95,28 +94,49 @@ La tendencia \emph{$w_0$} de una serie de tiempo puede ser obtenida a partir de 
     \label{eq1}
 \end{equation}
 
-%\subsection{Rgresión lineal}
-
 \subsection{Regresión múltiple}
 Un modelo de regresión múltiple es un modelo complemento de la regresión lineal simple, el cual tiene dos o más variables independientes \emph{k} que pueden influir en una variable dependiente \emph{y}. \citet{r11} expresan la regresión múltiple mediante la siguiente ecuación:
 \begin{equation}
     y = \beta_0 + \beta_1x_1 + ... + \beta_kx_k + \varepsilon.
     \label{eq2}
 \end{equation}
-%\section{Salud en una comunidad}
+
+\section{Modelos ARIMA}
+Los modelos autorregresivos integrados de media móvil o ARIMA, por su abreviatura en inglés abarcan un catalogo de aproximaciones para el estudio de series de tiempo. 
+
+Los modelos ARIMA utilizan variaciones y regresiones de datos estadísticos con el fin de encontrar patrones para una predicción hacia el futuro. 
 
 \chapter{Estado del arte}
 En el presente capítulo se estudia literatura reciente relacionada con el presente trabajo, esto con el objetivo de revisar distintos métodos para resolver el problema planteado en el presente trabajo y, además, también revisar implementaciones similares para resolver problemas distintos. Lo anterior tiene la finalidad de comparar los trabajos revisados e identificar áreas de oportunidad en ellos.
 
-En la primera sección, trabajos relacionados, se recopilan obras con características relacionadas al presente trabajo, ya sean relacionados con el problema que se pretende resolver o con los métodos empleados para buscar su resolución.
+En la primera sección, \emph{trabajos relacionados}, se recopilan obras con características relacionadas al presente trabajo, ya sean relacionados con el problema que se pretende resolver o con los métodos empleados para buscar su resolución.
 
-En la segunda sección, análisis comparativo, se comparan las distintas características de los trabajos revisados, de esa forma se pueden determinar las principales ventajas y desventajas de cada trabajo. 
+En la segunda sección, \emph{análisis comparativo}, se comparan las distintas características de los trabajos revisados, de esa forma se pueden determinar las principales ventajas y desventajas de cada trabajo. 
 
-Finalmente, en la tercera sección, áreas de oportunidad, se realiza una conclusión acerca de los resultados obtenidos del análisis comparativo.
+Finalmente, en la tercera sección, \emph{áreas de oportunidad}, se realiza una conclusión acerca de los resultados obtenidos del análisis comparativo.
 
+\clearpage
 \section{Trabajos relacionados}
-%Existen algunos trabajos que...xdxdxdxdxdxdxdxdxdxdxd xdxdxdxdxdxdxdxdxdxdxdxdxdx dxdxdxdxdxdxdxdxdxdxdxd
+Se recopila literatura relacionada desde el año 2017 hasta el año 2021. En esta sección los trabajos se mencionan en orden cronológico tomando en cuenta su año de publicación.
 
+\citet{r12} estudian la relación entre los niveles de contaminantes ambientales y la presencia de casos de enfermedades respiratorias en las consultas pediátricas. La variable dependiente analizada es la demanda en las consultas pediátricas por bronquiolitis, episodios de broncoespasmo y procesos respiratorios de vías altas. Como variables independientes se tienen los valores de contaminación ambiental. Se calculan coeficientes de correlación y regresión lineal múltiple.
+
+\citet{r13} abordan la necesidad de monitoreo, control y predicción de la pendiente de los niveles de contaminantes del aire. Para abordar el problema de investigación utilizan modelos ARIMA. 
+
+\citet{r14} estudian la asociación entre la exposición a largo plazo a la contaminación del aire y la metilación del ADN. Para ello realizan un estudio utilizando modelos de regresión lineal robustos para analizar la asociación entre la exposición al NO2 y a las partículas PM10 y PM2.5.
+
+\citet{r15} en su estudio abordan los niveles de contaminación del aire y su asociación con la presencia de presión sanguínea elevada en niños y adolescentes. La exposición a partículas PM10 y PM2.5 son estimadas con un modelo espacio-temporal. Son utilizados modelos lineales de efectos mixtos y modelos de regresión logística para investigar la asociación entre la exposición a partículas PM2.5 PM1O y presión sanguínea e hipertensión. 
+
+\citet{r16} estudian la relación entre los niveles de contaminación del aire y la obesidad y problemas cardiometabolicos. Para dicho estudio emplean modelos de regresión lineal.
+
+\citet{r17} examinan las asociaciones entre la exposición temprana a la contaminación del aire y la incidencia de asma y rinitis alérgica desde el nacimiento hasta la adolescencia. Para su estudio utilizan modelos de regresión.
+
+\citet{r18} estudian la asociación entre la exposición temprana a los contaminantes del aire y los egresos hospitalarios por asma. Para su estudio aplican modelos de regresión logística para el análisis de datos. 
+
+\citet{r19} abordan el estudio de la relación entre los niveles de contaminación del aire y el número de admisiones hospitalarias. Para ello se construye un modelo basado en la distribución Poisson.
+
+\citet{r20} estudian la relación entre la mortalidad del coronavirus (COVID-19) y la contaminación del aire. Para dicho estudio emplean un modelo de regresión lineal para establecer la relación entre los parametros de la contaminación del aire (concentraciones de PM10 o PM2.5) y la variable de respuesta (porcentaje
+mortalidad por unidad de casos reportados).
 
 \section{Comparación de trabajos}
 La mayoría de los trabajos citados...
