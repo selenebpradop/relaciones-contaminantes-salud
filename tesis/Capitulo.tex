@@ -143,23 +143,23 @@ mortalidad por unidad de casos reportados).
 La mayoría de los trabajos encontrados emplean modelos de regresión lineal o modelos de predicción. Además, en todos los trabajos encontrados el problema tratado presenta una alta relación con el problema abordado en el presente trabajo de tesis. El análisis comparativo de los trabajos relacionados se hace en base de los siguientes puntos:
 
 \begin{description}
-\item[Modelos de regresión lineal]{Son aquellos que ayudan a estudiar la relación entre una variable dependiente y una o más variables independientes.}
+\item[Modelos de regresión lineal:]{Son aquellos que ayudan a estudiar la relación entre una variable dependiente y una o más variables independientes.}
 \end{description}
 
 \begin{description}
-\item[Modelos de predicción]{Son aquellos que ayudan a hacer predicciones de una variable.}
+\item[Modelos de predicción:]{Son aquellos que ayudan a hacer predicciones de una variable.}
 \end{description}
 
 \begin{description}
-\item[Evaluación de modelos]{Se refiere a la utilización de técnicas para evaluar la eficacia de los modelos generados.}
+\item[Evaluación de modelos:]{Se refiere a la utilización de técnicas para evaluar la eficacia de los modelos generados.}
 \end{description}
 
 \begin{description}
-\item[Estudio de contaminantes del aire]{Se refiere a que el tema de estudio incluya uno o más contaminantes del aire.}
+\item[Estudio de contaminantes del aire:]{Se refiere a que el tema de estudio incluya uno o más contaminantes del aire.}
 \end{description}
 
 \begin{description}
-\item[Estudio de problemas de salud]{Se refiere a que el tema de estudio incluya uno o más problemas de salud.}
+\item[Estudio de problemas de salud:]{Se refiere a que el tema de estudio incluya uno o más problemas de salud.}
 \end{description}
 
 En el cuadro \ref{tab:Comparación de trabajos frente al desarrollado} se desglosan que características presentes  que se pueden encontrar en las investigaciones citadas y su relación con la investigación con la que se está trabajando actualmente.\\
@@ -209,27 +209,79 @@ En el presente trabajo se elaboran modelos de predicción para el tratamiento de
 
 En el presente trabajo también se emplean técnicas para evaluar los modelos generados. Solo en tres de los trabajos encontrados se aborda la evaluación de los modelos empleados, y al ser incluida en el presente estudio, puede representar una distinción.
 
-\chapter{Solución propuesta}
-Habiendo conocido las características que mejor describen a los atributos del presente trabajo, se puede decir que la base del método propuesto se puede desarrollar.
+\chapter{Diseño de la solución propuesta}
+En el presente capítulo se presenta la propuesta de diseño de la solución para el problema de investigación abordado en el presente trabajo, así como su implementación.
+%Habiendo conocido las características que mejor describen a los atributos del presente trabajo, se puede decir que la base del método propuesto se puede desarrollar.
 
-\section{Recolección de datos}
-La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años.
+\section{Herramientas}
+Las herramientas utilizadas en la presente investigación son:
+\begin{itemize}
+	\item Python 3.8.8 \url{https://www.python.org/}: Es un lenguaje de programación de alto nivel para programación de propósito general que cuenta con un conjunto de librerías de código abierto para estadísticas, limpieza y manipulación de datos.
+	\item Numpy \url{http://www.numpy.org/}: Es una librería para Python que brinda soporte para arreglos y matrices grandes y multidimensionales, así como funciones matemáticas de alto nivel para operar en tales estructuras.  
+	\item Matplotlib \url{https://matplotlib.org/}: Es una librería para Python que permite generar visualizaciones estáticas, animadas e interactivas a partir de datos.
+	\item Statsmodels \url{https://www.statsmodels.org/}: Es una librería para Python que tiene el objetivo de que el usuario pueda explorar datos, estimar modelos estadísticos y realizar pruebas estadísticas.
+\end{itemize}
 
-\section{Selección de datos}
-Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. 
+\section{Metodología}
 
-\section{Visualización de la evolución de las variables}
-Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos que muestran la evolución de las variables en el tiempo. Para ello se utilizan las herramientas discutidas a continuación.
+\subsection{Recolección de datos}
+La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años. Los datos de egresos hospitalarios provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de algunos contaminantes del aire presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por José Alberto Benavides Vázquez.
+% TABLA CIES
 
-\subsection{Series de tiempo}
-%Con las series de tiempo se observa como evoluciona
+\subsection{Selección y agrupación de datos}
+Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza Python con la librería Pandas que permite la manipulación de datos. Los conjuntos de datos por años de egresos hospitalarios contienen información de todos los estados de México, por lo cual se tendría que hacer una limpieza de datos para solo obtener los registros de Nuevo León.
 
-\subsection{Gráficos de radar}
-%Con los series de tiempo se observa como evoluciona
+Para la selección y agrupación de datos se sigue el procedimiento mostrado a continuación:
+
+\begin{algorithmic}[1]
+\State $a \leftarrow $ años de los que se obtuvieron datos
+\For {$i \in a$}
+    \State $contaminantes \leftarrow $ nombre del archivo .csv que contiene los datos de los contaminantes en el año $i$
+    \State Leer en $contaminantes$ las columnas fecha y contaminante 
+    \State $egresos \leftarrow $ nombre del archivo .csv que contiene los datos de los contaminantes en el año $i$
+    \State Leer en $contaminantes$ las columnas fecha, padecimiento y estado
+    \State $estado \leftarrow $ estado del que se quieren obtener datos
+    \State Seleccionar en $contaminantes$ los datos del $estado$
+\EndFor
+\end{algorithmic} 
+
+\subsection{Visualización de la evolución de las variables}
+Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en Python que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
+
+\subsubsection{Series de tiempo}
+Se realizan series de tiempo en Python (citar) con ayuda de la librería matplotlib, sklearn y seaborn, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. 
+En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
+\begin{figure}[h!]
+\setcounter{figure}{0} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
+   \end{center}
+    \caption{Evolución de los niveles de PM10 y el número de egresos diagnosticados la CIE O809 en el 2018.}
+    \label{serie_de_tiempo}
+\end{figure}
+
+\subsubsection{Gráficos de radar}
+Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de Python y las librerías numpy y matplotlib. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
+\begin{figure}[h!]
+\setcounter{figure}{1} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[width=0.55\textwidth]{Contaminantes-2017.eps}
+   \end{center}
+    \caption{Niveles de los contaminantes NO2, NOX, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
+    \label{grafico_de_telaraña}
+\end{figure}
 
 \subsection{Implementación de modelos para el estudio de la relación entre las variables}
+Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza Python y la librería statsmodels. Los tipos de modelos generados son los siguientes:
+\begin{itemize}
+	\item Regresión lineal.
+	\item Regresión lineal múltiple.
+	\item ARIMA.
+\end{itemize}
 
-\chapter{Desarrollo de la solución}
+\chapter{Implementación de la solución propuesta}
 Recapitulando las fases anteriores, se conoce que...
 
 
