@@ -164,7 +164,7 @@ La mayoría de los trabajos encontrados emplean modelos de regresión lineal o m
 
 En el cuadro \ref{tab:Comparación de trabajos frente al desarrollado} se desglosan que características presentes  que se pueden encontrar en las investigaciones citadas y su relación con la investigación con la que se está trabajando actualmente.\\
 \renewcommand{\tablename}{Cuadro}
-
+\renewcommand{\arraystretch}{1.4}
 \begin{table}[hbt!]
 \centering
 \caption{Comparación de trabajos frente al desarrollado, donde $\checkmark$ indica que cumple con esta característica y  $\times$ no cumple con esta característica.}
@@ -216,23 +216,27 @@ En el presente capítulo se presenta la propuesta de diseño de la solución par
 \section{Herramientas}
 Las herramientas utilizadas en la presente investigación son:
 \begin{itemize}
-	\item Python 3.8.8 \url{https://www.python.org/}: Es un lenguaje de programación de alto nivel para programación de propósito general que cuenta con un conjunto de librerías de código abierto para estadísticas, limpieza y manipulación de datos.
-	\item Numpy \url{http://www.numpy.org/}: Es una librería para Python que brinda soporte para arreglos y matrices grandes y multidimensionales, así como funciones matemáticas de alto nivel para operar en tales estructuras.  
-	\item Matplotlib \url{https://matplotlib.org/}: Es una librería para Python que permite generar visualizaciones estáticas, animadas e interactivas a partir de datos.
-	\item Statsmodels \url{https://www.statsmodels.org/}: Es una librería para Python que tiene el objetivo de que el usuario pueda explorar datos, estimar modelos estadísticos y realizar pruebas estadísticas.
+	\item \texttt{Python 3.8.8} \url{https://www.python.org/}: Es un lenguaje de programación de alto nivel para programación de propósito general que cuenta con un conjunto de librerías de código abierto para estadísticas, limpieza y manipulación de datos.
+	\item \texttt{Numpy 1.20.1} \url{http://www.numpy.org/}: Es una librería para Python que brinda soporte para arreglos y matrices grandes y multidimensionales, así como funciones matemáticas de alto nivel para operar en tales estructuras.  
+	\item \texttt{Pandas 1.2.4} \url{https://pandas.pydata.org/}: Es una librería para Python diseñada para la manipulación y análisis de datos.
+	\item \texttt{Seaborn 0.11.1} \url{https://seaborn.pydata.org/}: Es una librería para Python que provee una interfaz de alto nivel para la visualización de gráficos estadísticos.
+	\item \texttt{Matplotlib 3.3.4} \url{https://matplotlib.org/}: Es una librería para Python que permite generar visualizaciones estáticas, animadas e interactivas a partir de datos.
+	\item \texttt{Statsmodels 0.12.2} \url{https://www.statsmodels.org/}: Es una librería para Python que tiene el objetivo de que el usuario pueda explorar datos, estimar modelos estadísticos y realizar pruebas estadísticas.
 \end{itemize}
 
 \section{Metodología}
 
 \subsection{Recolección de datos}
-La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años. Los datos de egresos hospitalarios provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de algunos contaminantes del aire presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por José Alberto Benavides Vázquez.
+La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años. Los datos de egresos hospitalarios provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de algunos contaminantes del aire presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citeauthor{f3}.
 % TABLA CIES
 
 \subsection{Selección y agrupación de datos}
 Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza Python con la librería Pandas que permite la manipulación de datos. Los conjuntos de datos por años de egresos hospitalarios contienen información de todos los estados de México, por lo cual se tendría que hacer una limpieza de datos para solo obtener los registros de Nuevo León.
 
-Para la selección y agrupación de datos se sigue el procedimiento mostrado a continuación:
+Para la selección y agrupación de datos se sigue el procedimiento mostrado en la figura \ref{alg:a1}.
 
+\begin{algorithm}
+\caption{An algorithm with caption}\label{alg:a1}
 \begin{algorithmic}[1]
 \State $a \leftarrow $ años de los que se obtuvieron datos
 \For {$i \in a$}
@@ -244,6 +248,7 @@ Para la selección y agrupación de datos se sigue el procedimiento mostrado a c
     \State Seleccionar en $contaminantes$ los datos del $estado$
 \EndFor
 \end{algorithmic} 
+\end{algorithm}
 
 \subsection{Visualización de la evolución de las variables}
 Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en Python que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
@@ -255,7 +260,7 @@ En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo
 \setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
+   \includegraphics[width=1.1\textwidth]{PM10_O809_2018.eps}
    \end{center}
     \caption{Evolución de los niveles de PM10 y el número de egresos diagnosticados la CIE O809 en el 2018.}
     \label{serie_de_tiempo}
@@ -267,11 +272,12 @@ Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un
 \setcounter{figure}{1} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=0.55\textwidth]{Contaminantes-2017.eps}
+   \includegraphics[width=1\textwidth]{Contaminantes-2017.eps}
    \end{center}
     \caption{Niveles de los contaminantes NO2, NOX, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
     \label{grafico_de_telaraña}
 \end{figure}
+\clearpage
 
 \subsection{Implementación de modelos para el estudio de la relación entre las variables}
 Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza Python y la librería statsmodels. Los tipos de modelos generados son los siguientes:
