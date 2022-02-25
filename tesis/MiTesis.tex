@@ -11,6 +11,7 @@
 % Cargar un paquete está a tu libertad (y responsabilidad).
 \usepackage{algorithm} 
 \usepackage{algpseudocode} 
+\usepackage{listings}
 
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -39,6 +40,23 @@
 
 \renewcommand{\lstlistingname}{Código}
 \renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+
+% Caracteres usados en código 
+\lstset{
+    language=Python,
+    literate={á}{{\'a}}1
+        {ã}{{\~a}}1
+        {é}{{\'e}}1
+        {ó}{{\'o}}1
+        {í}{{\'i}}1
+        {ñ}{{\~n}}1
+        {¡}{{!`}}1
+        {¿}{{?`}}1
+        {ú}{{\'u}}1
+        {Í}{{\'I}}1
+        {Ó}{{\'O}}1
+}
+
 %%%%%%%%%%%%%%%%%%%%%
 % Definiendo campos %
 %%%%%%%%%%%%%%%%%%%%%
