@@ -256,15 +256,15 @@ Para la selección y agrupación de datos se sigue el procedimiento mostrado en 
 Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en Python que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
 
 \subsubsection{Series de tiempo}
-Se realizan series de tiempo en Python (citar) con ayuda de la librería matplotlib, sklearn y seaborn, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. 
+Se realizan series de tiempo en Python con ayuda de la librería matplotlib, sklearn y seaborn, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. 
 En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1.2\textwidth]{PM10_O809_2018.eps}
+   \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
    \end{center}
-    \caption{Evolución de los niveles de PM10 y el número de egresos diagnosticados la CIE O809 en el 2018.}
+    \caption[Ejemplo de series de tiempo]{Evolución de los niveles de PM10 y el número de egresos diagnosticados la CIE O809 en el 2018.}
     \label{serie_de_tiempo}
 \end{figure}
 
@@ -276,12 +276,12 @@ Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un
 \begin{center}
    \includegraphics[width=1\textwidth]{Contaminantes-2017.eps}
    \end{center}
-    \caption{Niveles de los contaminantes NO2, NOX, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
+    \caption[Ejemplo de gráficos de radar]{Niveles de los contaminantes NO2, NOX, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
     \label{grafico_de_telaraña}
 \end{figure}
 \clearpage
 
-\subsection{Implementación de modelos para el estudio de la relación entre las variables}
+\subsection{Implementación de modelos}
 Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza Python y la librería statsmodels. Los tipos de modelos generados son los siguientes:
 \begin{itemize}
 	\item Regresión lineal.
@@ -294,7 +294,9 @@ Después de haber generado gráficos para la visualización de la evolución de 
 % Recapitulando las fases anteriores, se conoce que...
 En implementación de la solución propuesta se muestra el desarrollo realizado de los puntos planteados en \ref{Diseño de la solución propuesta}. El desarrollo del presente proyecto se encuentra en el siguiente repositorio Github: \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/}.
 
-En la función \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas.
+\begin{description}
+\item{En la función \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas.}
+\end{description}
 
 El fragmento de código \ref{lst:c2} muestra como es que se generan las series de tiempo, esto después de haber procesado y agrupado los datos.
 
@@ -303,8 +305,7 @@ La función mostrada en \ref{lst:c3} genera gráficos de radar al ingresarle com
 En el fragmento de código \ref{lst:c4} se muestra como son generados los modelos de regresión lineal después de haber procesado y agrupado los datos.
 \clearpage
 
-\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, label=lst:c1]
-# Se importan las librerias necesarias
+\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Procedimiento del segundo paso, label=lst:c1]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -312,120 +313,61 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import string
 
-def comparacion_contaminantes_egresos(contaminante:str, año:str, bolnombrescies:bool, nombrescies:list, numciesindividuales:int, numciesagrupadas:int) -> None:
-
-    '''
-    Esta función recibe como parametros el contaminante y el año,
-    dichas variables se guardan en una variable de tipo str,
-    y la función genera una gráfica donde se ve la comparación entre
-    la evolución del contaminante proporcionado y las CIEs
-    durante el año proporcionado.
-    Las gráficas generadas se guardan en formato .jpg en la PC en la carpeta donde se encuentra
-    la función ejecutada.
-    '''
-
-    # Se declaran las columnas a extraer de la base de datos
-    columns = ['timestamp', contaminante]
-    # Se lee el archivo y los datos recuperados se guardan en 'dataframecontaminante'
-    dataframecontaminante = pd.read_csv('filled.csv', usecols=columns).dropna()
-    # Se convierten los strings a objeto datetime
-    strfdt = '%d-%b-%y %H'
-    dataframecontaminante['timestamp'] = pd.to_datetime(dataframecontaminante['timestamp'], errors = 'coerce', format=strfdt)
-    # Se eliminan los espacios vacios
-    dataframecontaminante = dataframecontaminante.dropna()
-    # Se acomoda el indice empezando en 0 con un incremento de 1
-    dataframecontaminante = dataframecontaminante.reset_index(drop=True)
-    
-    # Los datos de la columna 'timestamp' se vuelven a convertir a strings
-    dataframecontaminante['timestamp'] = dataframecontaminante['timestamp'].apply(lambda x: x.strftime('%Y-%m-%d %H'))
-    # Se guardan los datos de 'año' en 'dataframecontaminanteaño'
-    dataframecontaminanteaño = dataframecontaminante.loc[dataframecontaminante['timestamp'].str.startswith(año)]
-    dataframecontaminanteaño = dataframecontaminanteaño.reset_index(drop=True)
-
-    # Se convierten los strings a objeto datetime
-    strfdt = '%Y-%m-%d %H'
-    dataframecontaminanteaño['timestamp'] = pd.to_datetime(dataframecontaminanteaño['timestamp'], errors = 'coerce', format=strfdt)
-
-    # Se agrega una nueva columna con los numeros de semana
-    dataframecontaminanteaño['sem'] = dataframecontaminanteaño['timestamp'].apply(lambda x: date(x.year, x.month, x.day))
-    dataframecontaminanteaño['sem'] = dataframecontaminanteaño['sem'].apply(lambda x: Week.fromdate(x))
-    dataframecontaminanteaño['sem'] = dataframecontaminanteaño['sem'].apply(lambda x: x.week)
-
-    # Se cargan los datos de la base de datos 'EGRESO_'año'.csv'
-    colums = ['EGRESO', 'DIAG_INI']
-    csvegresos = 'EGRESO_' + año + '.csv'
-
-    if año=='2014':
-        dataframeegresosaño = pd.read_csv(csvegresos, usecols=colums).dropna()
-        # Se convierten los string a objetos datetime en 'dataframe'
-        strfdtoriginal = '%Y-%m-%d %H:%M:%S'
-    elif año=='2015':
-        dataframeegresosaño = pd.read_csv(csvegresos, usecols=colums, nrows=2500000).dropna()
-        # Se convierten los string a objetos datetime en 'dataframe'
-        strfdtoriginal = '%Y-%m-%d %H:%M:%S'
-    elif año=='2016':
-        dataframeegresosaño = pd.read_csv(csvegresos, usecols=colums).dropna()
-        # Se convierten los string a objetos datetime en 'dataframe'
-        strfdtoriginal = '%m/%d/%Y %H:%M'
-    elif año=='2017':
-        dataframeegresosaño = pd.read_csv(csvegresos, sep='|', usecols=colums, nrows=1500000).dropna()
-        # Se convierten los string a objetos datetime en 'dataframe'
-        strfdtoriginal = '%Y-%m-%d %H:%M:%S'
-    elif año=='2018':
-        dataframeegresosaño = pd.read_csv(csvegresos, usecols=colums, nrows=1000000).dropna()
-        # Se convierten los string a objetos datetime en 'dataframe'
-        strfdtoriginal = '%Y-%m-%d %H:%M:%S.000'
-    
-    dataframeegresosaño['EGRESO'] = pd.to_datetime(dataframeegresosaño['EGRESO'], errors = 'coerce', format=strfdtoriginal)
-    dataframeegresosaño = dataframeegresosaño.dropna()
-    dataframeegresosaño = dataframeegresosaño.reset_index(drop=True)
-    numaño = int(año) 
-    # Se agrega una columna con los numeros de semana
-    dataframeegresosaño['sem'] = dataframeegresosaño['EGRESO'].apply(lambda x: date(x.year, x.month, x.day))
-    dataframeegresosaño['sem'] = dataframeegresosaño['sem'].apply(lambda x: Week.fromdate(x))
-    dataframeegresosaño['sem'] = dataframeegresosaño['sem'].apply(lambda x: x.week)
-    dataframeegresosaño['EGRESO'] = dataframeegresosaño['EGRESO'].apply(lambda x: x if(x.year==numaño) else pd.NaT)   
-    dataframeegresosaño = dataframeegresosaño.dropna()
-    dataframeegresosaño = dataframeegresosaño.reset_index(drop=True)
-
-    # Se forma el nuevo dataframe 'semanas' con el numero de semana del año y la cantidad de egresos en cada semana
-    semanas = dataframeegresosaño['sem'].value_counts()
-    semanas = semanas.sort_index()
-
-    # Se pasa a un nuevo dataframe
-    dataframesemanascontaminanteaño = pd.DataFrame()
-    dataframesemanascontaminanteaño['sem'] = semanas.index
-    dataframesemanascontaminanteaño[contaminante] = ''
-    n = len(semanas.index)
-    for i in range (n):
-        registrossem = dataframecontaminanteaño.loc[dataframecontaminanteaño['sem'] == i+1]
-        # Se calcula el promedio por semana de las lecturas del contaminante registradas 
-        promediocontaminanteañosem = registrossem[contaminante].mean()
-        dataframesemanascontaminanteaño[contaminante][i] = promediocontaminanteañosem
+columns = ['timestamp', contaminante]
+dataframec = pd.read_csv('filled.csv', usecols=columns).dropna()
+strfdt = '%d-%b-%y %H'
+dataframec['timestamp'] = pd.to_datetime(dataframec['timestamp'], errors = 'coerce', format=strfdt)
+dataframec = dataframec.dropna()
+dataframec = dataframec.reset_index(drop=True)
+dataframec['timestamp'] = dataframec['timestamp'].apply(lambda x: x.strftime('%Y-%m-%d %H'))
+dataframeca = dataframec.loc[dataframec['timestamp'].str.startswith(año)]
+dataframeca = dataframeca.reset_index(drop=True)
+strfdt = '%Y-%m-%d %H'
+dataframeca['timestamp'] = pd.to_datetime(dataframeca['timestamp'], errors = 'coerce', format=strfdt)
+dataframeca['sem'] = dataframeca['timestamp'].apply(lambda x: date(x.year, x.month, x.day))
+dataframeca['sem'] = dataframeca['sem'].apply(lambda x: Week.fromdate(x))
+dataframeca['sem'] = dataframeca['sem'].apply(lambda x: x.week)
+colums = ['EGRESO', 'DIAG_INI']
+csvegresos = 'EGRESO_' + año + '.csv'
+dataframeea = pd.read_csv(csvegresos, usecols=colums).dropna()
+dataframeea['EGRESO'] = pd.to_datetime(dataframeea['EGRESO'], errors = 'coerce', format=strfdto)
+dataframeea = dataframeea.loc[dataframeea['ENTIDAD'] == entidad]
+dataframeea = dataframeea.dropna()
+dataframeea = dataframeea.reset_index(drop=True)
+numaño = int(año) 
+dataframeea['sem'] = dataframeea['EGRESO'].apply(lambda x: date(x.year, x.month, x.day))
+dataframeea['sem'] = dataframeea['sem'].apply(lambda x: Week.fromdate(x))
+dataframeea['sem'] = dataframeea['sem'].apply(lambda x: x.week)
+dataframeea['EGRESO'] = dataframeea['EGRESO'].apply(lambda x: x if(x.year==numaño) else pd.NaT)   
+dataframeea = dataframeea.dropna()
+dataframeea = dataframeea.reset_index(drop=True)
+dataframesca = pd.DataFrame()
+dataframesca['sem'] = semanas.index
+dataframesca[contaminante] = ''
+n = len(semanas.index)
+for i in range (n):
+    registrossem = dataframeca.loc[dataframeca['sem'] == i+1]
+    promediocas = registrossem[contaminante].mean()
+    dataframesca[contaminante][i] = promediocas
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, label=lst:c2]
-# Se crea el dataframe 'diagnosticosaño' con los nombres de los diferentes diagnosticos sin repeticion
-diagnosticosaño = dataframeegresosaño['DIAG_INI'].value_counts()
-# Se ordena del diagnostico con mayor numero de egresos al diagnostico con menor numero de egresos
-diagnosticosaño = diagnosticosaño.sort_values(ascending = False)
-# Se crea el dataframe 'cies2010' con los nombres de los diagnosticos, los numeros de las semanas, 
-# y la cantidad de diagnosticos de dicha enfermedad en cada semana
-ciesaño = dataframeegresosaño.groupby(['DIAG_INI', 'sem']).count()
-
-# Se importan las librerias necesarias
+\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Procedimiento del segundo paso, label=lst:c2]
+import pandas as pd
+from epiweeks import Week, date
 from sklearn import preprocessing
 import seaborn as sns
 import matplotlib.pyplot as plt
 import string
 
+diagnosticosaño = dataframeea['DIAG_INI'].value_counts()
+diagnosticosaño = diagnosticosaño.sort_values(ascending = False)
+ciesaño = dataframeea.groupby(['DIAG_INI', 'sem']).count()
+
 s_scaler = preprocessing.StandardScaler()
-# Se crea la lista 'ind' con los indices de las semanas empezando con el 1
 ind = []
 n = len(semanas.index)
 for i in range (n):
     ind.append(i+1)
-# Se guardan las letras del abdcedario en mayusculas en la lista 'letras' para la agrupación de CIEs
 letras = []
 for letra in string.ascii_uppercase:
     letras.append(str(letra))
@@ -438,23 +380,23 @@ mindividuales = 7
 print('\n' + año)
 for name in diagnosticosaño.index:
     if cont < maximo:
-        dataframegraficoañocontaminantecie = pd.DataFrame()
-        dataframegraficoañocontaminantecie[contaminante] = dataframesemanascontaminanteaño[contaminante]
-        dataframegraficoañocontaminantecie = dataframegraficoañocontaminantecie.reindex(ind)
+        dataframegraficoacc = pd.DataFrame()
+        dataframegraficoacc[contaminante] = dataframesca[contaminante]
+        dataframegraficoacc = dataframegacc.reindex(ind)
         if cont < mindividuales:
-            dataframegraficoañocontaminantecie[name] = ciesaño['EGRESO'][name]
+            dataframegacc[name] = ciesaño['EGRESO'][name]
             for i in range (n):
-                dataframegraficoañocontaminantecie[contaminante][i+1] = dataframesemanascontaminanteaño[contaminante][i]
+                dataframegacc[contaminante][i+1] = dataframesca[contaminante][i]
             col_names = [contaminante, name]    
         else:
             nameg =  letras[cont]
-            ciesagrupadas = dataframeegresosaño.loc[dataframeegresosaño['DIAG_INI'].str.startswith(nameg)]
+            ciesagrupadas = dataframeea.loc[dataframeea['DIAG_INI'].str.startswith(nameg)]
             ciesagrupadas = ciesagrupadas['sem'].value_counts()
-            dataframegraficoañocontaminantecie[nameg] = ciesagrupadas
+            dataframegacc[nameg] = ciesagrupadas
             for i in range (n):
-                dataframegraficoañocontaminantecie[contaminante][i+1] = dataframesemanascontaminanteaño[contaminante][i]
+                dataframegacc[contaminante][i+1] = dataframesca[contaminante][i]
             col_names = [contaminante, nameg]
-        df_s = s_scaler.fit_transform(dataframegraficoañocontaminantecie)
+        df_s = s_scaler.fit_transform(dataframegacc)
         df_s = pd.DataFrame(df_s, columns=col_names)
         fig, ax = plt.subplots(ncols=1, figsize=(20, 8))
         print('\n' + col_names[0] + ' & ' + col_names[1])
@@ -466,34 +408,8 @@ for name in diagnosticosaño.index:
     cont = cont+1
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, label=lst:c3]
+\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, basicstyle=\tiny, label=lst:c3]
 def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_labels, colors, typeframe):
-
-    """
-    Create a radar chart.
-
-    This function receives parameters and with that a radar chart is created.
-
-    Parameters
-    ----------
-    datasets: list
-        A list that contains one list for each dataset.
-    lenlines: int
-        The length of the lines of the spiderweb.
-    numspiders: int
-        The number of spiderwebs to create.
-    title: String
-        The title of the figure.
-    titles: list
-        A list with the names of each spiderweb.
-    spoke_labels: list
-        A list with the names of each line of the spiderweb.
-    colors: list    
-        A list with the first letter of the color of each spiderweb [{'b', 'r', 'g', 'm', 'y'}].
-    typeframe: {'circle', 'polygon'}
-        A string with the name of the type of the Frame for the spiderwebs.
-    """
-
 
     # Set the number of lines of each spiderweb
     N = len(datasets)
@@ -522,7 +438,7 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
     for ax, (titlespiderweb) in zip(axs.flat, titles):
         # Put labels in the lines
         ax.set_rgrids(rgrids)        
-        ax.set_title(titlespiderweb, weight='bold', size='medium', position=(0.5, 1.1), horizontalalignment='center', verticalalignment='center')
+        ax.set_title(titlespiderweb, weight='bold', size='medium', position=(0.5, 1.1))
         dataspider = []
         # Normalize data
         for y in range(N):
@@ -541,145 +457,57 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
         ax.set_varlabels(spoke_labels)
         # Increment the counter
         i=i+1
-        
-    # Put the name of the figure
-    fig.text(0.5, 0.965, title, horizontalalignment='center', color='black', weight='bold', size='large')
-
-    # Save the figure in an image with .pdf format
-    plt.savefig(title + '.pdf', format='pdf', transparent=True, dpi=1000)
-
     # Show the figure
     plt.show()
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, label=lst:c4]
-# Se crea el dataframe 'diagnosticosaño' con los nombres de los diferentes diagnosticos sin repeticion
-diagnosticosaño = dataframeegresosaño['DIAG_INI'].value_counts()
-# Se ordena del diagnostico con mayor numero de egresos al diagnostico con menor numero de egresos
-diagnosticosaño = diagnosticosaño.sort_values(ascending = False)
-# Se crea el dataframe 'cies2010' con los nombres de los diagnosticos, los numeros de las semanas, 
-# y la cantidad de diagnosticos de dicha enfermedad en cada semana
-ciesaño = dataframeegresosaño.groupby(['DIAG_INI', 'sem']).count()
-
-# Se importan las librerias necesarias
-from sklearn import preprocessing
-import seaborn as sns
-import matplotlib.pyplot as plt
-import string
-
-# Preprocesado y modelado
+\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, basicstyle=\tiny, label=lst:c4]
+datos = pd.DataFrame(dataframegacc, columns=col_names)
+# Gráfico
 # ==============================================================================
-from scipy.stats import pearsonr
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
-from sklearn.metrics import mean_squared_error
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-from matplotlib import style
-# Configuración warnings
+fig, ax = plt.subplots(figsize=(6, 3.84))
+datos.plot(
+    x    = col_names[0],
+    y    = col_names[1],
+    c    = 'firebrick',
+    kind = "scatter",
+    ax   = ax
+)
+ax.set_title('Contaminante ' + col_names[0] + ' & CIE ' + col_names[1])
+
+# Correlación lineal entre las dos variables
 # ==============================================================================
-import warnings
-warnings.filterwarnings('ignore')
+corr_test = pearsonr(x = datos[col_names[0]].fillna(0), y =  datos[col_names[1]].fillna(0))
+print("Coeficiente de correlación de Pearson: ", corr_test[0])
+print("P-value: ", corr_test[1])
 
-# Configuración matplotlib
+# División de los datos en train y test
 # ==============================================================================
-plt.rcParams['image.cmap'] = "bwr"
-#plt.rcParams['figure.dpi'] = "100"
-plt.rcParams['savefig.bbox'] = "tight"
-style.use('ggplot') or plt.style.use('ggplot')
-
-import numpy as np
-
-s_scaler = preprocessing.StandardScaler()
-# Se crea la lista 'ind' con los indices de las semanas empezando con el 1
-ind = []
-n = len(semanas.index)
-for i in range (n):
-    ind.append(i+1)
-# Se guardan las letras del abdcedario en mayusculas en la lista 'letras' para la agrupación de CIEs
-letras = []
-for letra in string.ascii_uppercase:
-    letras.append(str(letra))
-# Se inicia un contador para controlar la cantidad de graficos a generar
-cont = 0
-maximo = 10
-mindividuales = 3
-
-# Proceso de generación de las figuras
-print('\n' + año)
-for name in diagnosticosaño.index:
-    if cont < maximo:
-        dataframegraficoañocontaminantecie = pd.DataFrame()
-        dataframegraficoañocontaminantecie[contaminante] = dataframesemanascontaminanteaño[contaminante]
-        dataframegraficoañocontaminantecie = dataframegraficoañocontaminantecie.reindex(ind)
-        if cont < mindividuales:
-            dataframegraficoañocontaminantecie[name] = ciesaño['EGRESO'][name]
-            for i in range (n):
-                dataframegraficoañocontaminantecie[contaminante][i+1] = dataframesemanascontaminanteaño[contaminante][i]
-            col_names = [contaminante, name]    
-        else:
-            nameg =  letras[cont]
-            ciesagrupadas = dataframeegresosaño.loc[dataframeegresosaño['DIAG_INI'].str.startswith(nameg)]
-            ciesagrupadas = ciesagrupadas['sem'].value_counts()
-            dataframegraficoañocontaminantecie[nameg] = ciesagrupadas
-            for i in range (n):
-                dataframegraficoañocontaminantecie[contaminante][i+1] = dataframesemanascontaminanteaño[contaminante][i]
-            col_names = [contaminante, nameg]
-        #df_s = s_scaler.fit_transform(dataframegraficoañocontaminantecie)
-        datos = pd.DataFrame(dataframegraficoañocontaminantecie, columns=col_names)
-
-        # Gráfico
-        # ==============================================================================
-        fig, ax = plt.subplots(figsize=(6, 3.84))
-
-        datos.plot(
-            x    = col_names[0],
-            y    = col_names[1],
-            c    = 'firebrick',
-            kind = "scatter",
-            ax   = ax
-        )
-        ax.set_title('Contaminante ' + col_names[0] + ' & CIE ' + col_names[1])
-
-        # Correlación lineal entre las dos variables
-        # ==============================================================================
-        corr_test = pearsonr(x = datos[col_names[0]].fillna(0), y =  datos[col_names[1]].fillna(0))
-        print("Coeficiente de correlación de Pearson: ", corr_test[0])
-        print("P-value: ", corr_test[1])
-
-        # División de los datos en train y test
-        # ==============================================================================
-        xx = datos[[col_names[0]]].fillna(0)
-        yy = datos[[col_names[1]]].fillna(0)
+xx = datos[[col_names[0]]].fillna(0)
+yy = datos[[col_names[1]]].fillna(0)
         
-        x2 = xx.values.tolist()
-        y2 = yy.values.tolist()
+x2 = xx.values.tolist()
+y2 = yy.values.tolist()
 
-        # Creación del modelo utilizando matrices como en scikitlearn
-        # ==============================================================================
-        # A la matriz de predictores se le tiene que añadir una columna de 1s para el intercept del modelo
-        x = np.array(x2).astype(float)
-        y = np.array(y2).astype(float)
-        #ones = np.ones(len(x[0]))
-        #X = sm.add_constant(np.column_stack((x[0], ones)))
-        #for ele in x[1:]:
-        #    X = sm.add_constant(np.column_stack((ele, X)))
-        modelo = sm.OLS(y, x)
-        modelo = modelo.fit()
-        print(modelo.summary())
+# Creación del modelo utilizando matrices como en scikitlearn
+# ==============================================================================
+# A la matriz de predictores se le tiene que añadir una columna de 1s para el intercept del modelo
+x = np.array(x2).astype(float)
+y = np.array(y2).astype(float)
+#ones = np.ones(len(x[0]))
+#X = sm.add_constant(np.column_stack((x[0], ones)))
+#for ele in x[1:]:
+#    X = sm.add_constant(np.column_stack((ele, X)))
+modelo = sm.OLS(y, x)
+modelo = modelo.fit()
+print(modelo.summary())
 \end{lstlisting}
 
 \chapter{Experimentos}
-Después de...
+En el presente capítulo se presenta el diseño de los experimentos realizados así como los resultados obtenidos de ellos.
 
-\section{Diseño experimental}
-Hola...
+En esta sección se tratan los resultados obtenidos partiendo de desarrollar algunos experimentos que permiten determinar si la solución propuesta cumple con el objetivo planteado.
 
-\section{Resultados}
-Establecidos los experimentos que se van a realizar, se reporta los resultados obtenidos...
-
-\section{Discusión}
 Todos los experimentos son ejecutados en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
 
 \begin{table}[H]
@@ -699,6 +527,14 @@ Todos los experimentos son ejecutados en una laptop con las especificaciones del
 	}
 \end{table}
 
+\section{Diseño experimental}
+En la presente sección se discute el diseño de experimentos, es decir, que valores constantes fueron utilizados para su realización y por que se usan dichos valores.
+
+\section{Resultados}
+Establecidos los experimentos que se van a realizar, se reporta los resultados obtenidos...
+
+\section{Discusión}
+Hola...
 
 \chapter{Conclusiones}
 Este capítulo describe la tesis a partir de la manera que cumple los objetivos generales y específicos para determinar si la hipótesis se comprueba, trata también del porque se realizó la tesis...
