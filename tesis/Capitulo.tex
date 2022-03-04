@@ -228,13 +228,12 @@ Las herramientas utilizadas en la presente investigación son:
 \end{itemize}
 
 \subsection{Recolección de datos}
-La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años. Los datos de egresos hospitalarios provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de algunos contaminantes del aire presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citeauthor{f3}.
+La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años.
 % TABLA CIES
 % Reajustar tamaño de figuras
 
 \subsection{Selección y agrupación de datos}
-Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza Python con la librería Pandas que permite la manipulación de datos. Los conjuntos de datos por años de egresos hospitalarios contienen información de todos los estados de México, por lo cual se tendría que hacer una limpieza de datos para solo obtener los registros de Nuevo León.
-
+Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza Python con la librería Pandas que permite la manipulación de datos. 
 Para la selección y agrupación de datos se sigue el procedimiento mostrado en la figura \ref{alg:a1}.
 
 \begin{algorithm}
@@ -508,6 +507,39 @@ En el presente capítulo se presenta el diseño de los experimentos realizados a
 
 En esta sección se tratan los resultados obtenidos partiendo de desarrollar algunos experimentos que permiten determinar si la solución propuesta cumple con el objetivo planteado.
 
+\section{Diseño experimental}
+En la presente sección se discute el diseño de experimentos, es decir, que valores constantes fueron utilizados para su realización y por que se usan dichos valores.
+
+\subsection{Datos de entrada}
+Los datos de egresos hospitalarios del año 2014 al año 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10, PM2.5, NOX Y NO2 presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citeauthor{f3}.
+
+\begin{description}
+\item [Selección de datos.] {Los conjuntos de datos por año de egresos hospitalarios contienen información de todos los estados de México, por lo cual se hace una limpieza de datos para solo obtener los registros de Nuevo León ya que de dicha entidad es de la cual se tienen los datos de contaminación.}
+\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE \citep{r9} se obtiene el numero de egresos en cada semana del año.}
+\item [Datos de los contaminantes.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Se obtiene el promedio del nivel del contaminante por cada semana del año.}
+\end{description}
+
+\subsection{Visualización de datos}
+Con los datos ya seleccionados y agrupados se procede a generar las visualizaciones de los datos. Las visualizaciones de los datos se hacen con series de tiempo y gráficos de radar.
+
+\begin{description}
+\item [Series de tiempo.] {Al tener los datos ya seleccionados y agrupados se procede a generar series de tiempo de cada año por contaminante y CIE \citep{r9}}.
+\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan, seleccionando un valor mínimo de cero y un valor máximo de cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIES \citep{r9}}.
+\end{description}
+
+\subsection{Generación de modelos}
+Con los datos ya seleccionados y agrupados se procede a generar los modelos.
+
+\begin{description}
+\item [Modelo de regresión lineal.] {Al tener los datos ya seleccionados y agrupados se procede a calcular el coeficiente de correlación de Pearson en cada año por contaminante y CIE \citep{r9}, así como su modelo de regresión lineal}.
+\end{description}
+
+
+
+\section{Resultados}
+Establecidos los experimentos que se van a realizar, se reporta los resultados obtenidos...
+
+\section{Discusión}
 Todos los experimentos son ejecutados en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
 
 \begin{table}[H]
@@ -515,26 +547,17 @@ Todos los experimentos son ejecutados en una laptop con las especificaciones del
 		\caption{Especificaciones técnicas del equipo de cómputo}
 		\begin{tabular}{|c|c|c|}
 			\hline
-			Sistema Operativo & Windows 10 64 bits\\
+			Sistema Operativo & macOS Big Sur\\
 			\hline
-			Procesador & Intel Core i5-7300HQ\\
+			Procesador & Apple M1\\
 			\hline
-			RAM & 8 GB RAM DDR4 2133 MHz\\
+			RAM & 8 GB RAM\\
 			\hline
 		\end{tabular}
 
 	\label{tab:Especificaciones técnicas del PC}
 	}
 \end{table}
-
-\section{Diseño experimental}
-En la presente sección se discute el diseño de experimentos, es decir, que valores constantes fueron utilizados para su realización y por que se usan dichos valores.
-
-\section{Resultados}
-Establecidos los experimentos que se van a realizar, se reporta los resultados obtenidos...
-
-\section{Discusión}
-Hola...
 
 \chapter{Conclusiones}
 Este capítulo describe la tesis a partir de la manera que cumple los objetivos generales y específicos para determinar si la hipótesis se comprueba, trata también del porque se realizó la tesis...
