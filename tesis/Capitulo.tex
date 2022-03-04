@@ -237,7 +237,7 @@ Después de la recolección de datos se procede a seleccionar que datos van a se
 Para la selección y agrupación de datos se sigue el procedimiento mostrado en la figura \ref{alg:a1}.
 
 \begin{algorithm}
-\caption{An algorithm with caption}\label{alg:a1}
+\caption{Selección y agrupamiento de datos}\label{alg:a1}
 \begin{algorithmic}[1]
 \State $a \leftarrow $ años de los que se obtuvieron datos
 \For {$i \in a$}
@@ -295,16 +295,14 @@ En implementación de la solución propuesta se muestra el desarrollo realizado 
 
 \begin{description}
 \item{En la función \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas.}
+\item{El fragmento de código \ref{lst:c2} muestra como es que se generan las series de tiempo, esto después de haber procesado y agrupado los datos.}
+\item{La función mostrada en \ref{lst:c3} genera gráficos de radar al ingresarle como parámetros los datos ya procesados y agrupados.}
+\item{En el fragmento de código \ref{lst:c4} se muestra como son generados los modelos de regresión lineal después de haber procesado y agrupado los datos.}
 \end{description}
 
-El fragmento de código \ref{lst:c2} muestra como es que se generan las series de tiempo, esto después de haber procesado y agrupado los datos.
-
-La función mostrada en \ref{lst:c3} genera gráficos de radar al ingresarle como parámetros los datos ya procesados y agrupados.
-
-En el fragmento de código \ref{lst:c4} se muestra como son generados los modelos de regresión lineal después de haber procesado y agrupado los datos.
 \clearpage
 
-\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Procedimiento del segundo paso, label=lst:c1]
+\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Procesamiento y agrupamiento de datos, label=lst:c1]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -350,7 +348,7 @@ for i in range (n):
     dataframesca[contaminante][i] = promediocas
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Procedimiento del segundo paso, label=lst:c2]
+\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Generación de series de tiempo, label=lst:c2]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -407,7 +405,7 @@ for name in diagnosticosaño.index:
     cont = cont+1
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, basicstyle=\tiny, label=lst:c3]
+\begin{lstlisting}[language=Python, caption=Generación de graficos de radar, basicstyle=\tiny, label=lst:c3]
 def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_labels, colors, typeframe):
 
     # Set the number of lines of each spiderweb
@@ -460,7 +458,7 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
     plt.show()
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Procedimiento del segundo paso, basicstyle=\tiny, label=lst:c4]
+\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal, basicstyle=\tiny, label=lst:c4]
 datos = pd.DataFrame(dataframegacc, columns=col_names)
 # Gráfico
 # ==============================================================================
