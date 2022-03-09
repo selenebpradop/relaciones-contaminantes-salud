@@ -163,8 +163,7 @@ La mayoría de los trabajos encontrados emplean modelos de regresión lineal o m
 \end{description}
 
 En el cuadro \ref{tab:Comparación de trabajos frente al desarrollado} se desglosan que características presentes  que se pueden encontrar en las investigaciones citadas y su relación con la investigación con la que se está trabajando actualmente.\\
-\renewcommand{\tablename}{Cuadro}
-\renewcommand{\arraystretch}{1.4}
+
 \begin{table}[hbt!]
 \centering
 \caption{Comparación de trabajos frente al desarrollado, donde $\checkmark$ indica que cumple con esta característica y  $\times$ no cumple con esta característica.}
@@ -216,24 +215,42 @@ En el presente capítulo se presenta la propuesta de diseño de la solución par
 \section{Diseño de la solución propuesta} \label{Diseño de la solución propuesta}
 En diseño de la solución propuesta se plantean las herramientas utilizadas y los pasos seguidos para la solución propuestas.
 
-Las herramientas utilizadas en la presente investigación son:
+Las herramientas utilizadas en la presente investigación se muestran en el cuadro \ref{tab:Herramientas utilizadas}.
 
-\begin{itemize}
-	\item \texttt{Python 3.8.8} \url{https://www.python.org/}: Es un lenguaje de programación de alto nivel para programación de propósito general que cuenta con un conjunto de librerías de código abierto para estadísticas, limpieza y manipulación de datos.
-	\item \texttt{Numpy 1.20.1} \url{http://www.numpy.org/}: Es una librería para Python que brinda soporte para arreglos y matrices grandes y multidimensionales, así como funciones matemáticas de alto nivel para operar en tales estructuras.  
-	\item \texttt{Pandas 1.2.4} \url{https://pandas.pydata.org/}: Es una librería para Python diseñada para la manipulación y análisis de datos.
-	\item \texttt{Seaborn 0.11.1} \url{https://seaborn.pydata.org/}: Es una librería para Python que provee una interfaz de alto nivel para la visualización de gráficos estadísticos.
-	\item \texttt{Matplotlib 3.3.4} \url{https://matplotlib.org/}: Es una librería para Python que permite generar visualizaciones estáticas, animadas e interactivas a partir de datos.
-	\item \texttt{Statsmodels 0.12.2} \url{https://www.statsmodels.org/}: Es una librería para Python que tiene el objetivo de que el usuario pueda explorar datos, estimar modelos estadísticos y realizar pruebas estadísticas.
-\end{itemize}
+\begin{table}[H]
+	{\centering
+		\caption{Herramientas utilizadas.}
+		\begin{tabular}{|c|c|c|}
+			\hline 
+			Herramienta & Versión & URL\\
+			\hline
+			\texttt{Python} & 3.8.8 & \url{https://www.python.org/}\\
+			\hline
+			\texttt{NumPy} & 1.20.1 & \url{http://www.numpy.org/}\\
+			\hline
+			\texttt{Pandas} & 1.2.4 & \url{https://pandas.pydata.org/}\\
+			\hline
+			\texttt{Seaborn} & 0.11.1 & \url{https://seaborn.pydata.org/}\\
+			\hline
+			\texttt{Matplotlib} & 3.3.4 & \url{https://matplotlib.org/}\\
+			\hline
+			\texttt{Statsmodels} & 0.12.2 & \url{https://www.statsmodels.org/}\\
+			\hline
+			\texttt{Scikit-learn} & 0.24.1 & \url{https://scikit-learn.org/}\\
+			\hline
+		\end{tabular}
+		
+	\label{tab:Herramientas utilizadas}
+	}
+\end{table}
 
 \subsection{Recolección de datos}
-La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más  contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años.
+La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años.
 % TABLA CIES
 % Reajustar tamaño de figuras
 
 \subsection{Selección y agrupación de datos}
-Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza Python con la librería Pandas que permite la manipulación de datos. 
+Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} que permite la manipulación de datos \ref{tab:Herramientas utilizadas}. 
 Para la selección y agrupación de datos se sigue el procedimiento mostrado en la figura \ref{alg:a1}.
 
 \begin{algorithm}
@@ -252,10 +269,10 @@ Para la selección y agrupación de datos se sigue el procedimiento mostrado en 
 \end{algorithm}
 
 \subsection{Visualización de la evolución de las variables}
-Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en Python que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
+Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en \texttt{Python} \ref{tab:Herramientas utilizadas} que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
 
 \subsubsection{Series de tiempo}
-Se realizan series de tiempo en Python con ayuda de la librería matplotlib, sklearn y seaborn, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. 
+Se realizan series de tiempo en Python con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos \ref{tab:Herramientas utilizadas}. 
 En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
@@ -268,7 +285,7 @@ En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo
 \end{figure}
 
 \subsubsection{Gráficos de radar}
-Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de Python y las librerías numpy y matplotlib. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
+Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib} \ref{tab:Herramientas utilizadas}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
 \begin{figure}[h!]
 \setcounter{figure}{1} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
@@ -281,7 +298,7 @@ Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un
 \clearpage
 
 \subsection{Implementación de modelos}
-Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza Python y la librería statsmodels. Los tipos de modelos generados son los siguientes:
+Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza \texttt{Python} y la librería \texttt{Statsmodels} \ref{tab:Herramientas utilizadas}. Los tipos de modelos generados son los siguientes:
 \begin{itemize}
 	\item Regresión lineal.
 	\item Regresión lineal múltiple.
