@@ -538,18 +538,35 @@ Los datos de egresos hospitalarios del año 2014 al año 2018 provienen de la ba
 Con los datos ya seleccionados y agrupados se procede a generar las visualizaciones de los datos. Las visualizaciones de los datos se hacen con series de tiempo y gráficos de radar.
 
 \begin{description}
-\item [Series de tiempo.] {Al tener los datos ya seleccionados y agrupados se procede a generar series de tiempo de cada año por contaminante y CIE \citep{r9}}.
-\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan, seleccionando un valor mínimo de cero y un valor máximo de cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIES \citep{r9}}.
+\item [Series de tiempo.] {Se procede a generar series de tiempo de cada año por contaminante y CIE \citep{r9}}. Las variables ajustables son:
+\begin{itemize}
+	\item contaminante: El nombre del contaminante.
+	\item año: El año del que se quieren obtener las series de tiempo.
+	\item numcies: Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+\end{itemize}
+
+\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un numero entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIES \citep{r9}}. Las variables ajustables son:
+\begin{itemize}
+    \item Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+	\item Valor máximo que se utiliza para representar la longitud de los ejes en el gráfico.
+	\item Nombre de la figura.
+	\item Nombre de cada eje en el gráfico.
+	\item Los colores de cada eje en el gráfico. 
+	\item Si el spiderweb es generado de forma circular o en forma de polígono.
+\end{itemize}
 \end{description}
 
 \subsection{Generación de modelos}
-Con los datos ya seleccionados y agrupados se procede a generar los modelos.
+Se procede a generar los modelos. En cada modelo se tienen métricas para evaluar su eficacia y valores que pueden ser ajustados en función de encontrar la combinación que proporcione mejores resultados.
 
-\begin{description}
-\item [Modelo de regresión lineal.] {Al tener los datos ya seleccionados y agrupados se procede a calcular el coeficiente de correlación de Pearson en cada año por contaminante y CIE \citep{r9}, así como su modelo de regresión lineal}.
-\end{description}
+\subsubsection{Regresión lineal}
+Se tienen algunas variables que pueden ser modificadas para la generación de los modelos de regresión lineal.
 
-
+\begin{itemize}
+	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+	\item Porcentaje de datos utilizados para el entrenamiento del modelo.
+	\item Nivel de significancia.
+\end{itemize}
 
 \section{Resultados}
 Establecidos los experimentos que se van a realizar, se reporta los resultados obtenidos...
