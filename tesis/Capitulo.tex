@@ -280,7 +280,7 @@ En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo
 \begin{center}
    \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
    \end{center}
-    \caption[Ejemplo de series de tiempo]{Evolución de los niveles de PM10 y el número de egresos diagnosticados la CIE O809 en el 2018.}
+    \caption[Ejemplo de series de tiempo]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo}
 \end{figure}
 
@@ -540,9 +540,9 @@ Con los datos ya seleccionados y agrupados se procede a generar las visualizacio
 \begin{description}
 \item [Series de tiempo.] {Se procede a generar series de tiempo de cada año por contaminante y CIE \citep{r9}}. Las variables ajustables son:
 \begin{itemize}
-	\item contaminante: El nombre del contaminante.
-	\item año: El año del que se quieren obtener las series de tiempo.
-	\item numcies: Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+	\item El nombre del contaminante.
+	\item El año del que se quieren obtener las series de tiempo.
+	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
 \end{itemize}
 
 \item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un numero entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIES \citep{r9}}. Las variables ajustables son:
@@ -568,8 +568,150 @@ Se tienen algunas variables que pueden ser modificadas para la generación de lo
 	\item Nivel de significancia.
 \end{itemize}
 
+También se tienen variables que indican información sobre la eficacia del modelo.
+
+\begin{itemize}
+	\item P-value.
+	\item R-squared.
+	\item Raíz de error cuadrático medio (RMSE).
+\end{itemize}
+
+
 \section{Resultados}
-Establecidos los experimentos que se van a realizar, se reporta los resultados obtenidos...
+Establecidos las especificaciones de los experimentos que se realizan, se reportan los resultados obtenidos.
+% FORMULA PORCENTAJE ERROR
+\subsection{Experimento A: Datos de niveles de PM10}
+\subsubsection{Año 2014}
+
+En la figura \ref{serie_de_tiempo_2014_PM10} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. Las demás imágenes se encuentran en el repositorio del presente proyecto.
+
+\begin{figure}[h!]
+\setcounter{figure}{0} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[width=1\textwidth]{PM10_O809_2014.eps}
+   \end{center}
+    \caption[Series de tiempo 2014 PM10 Y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2014.}
+    \label{serie_de_tiempo_2014_PM10}
+\end{figure}
+
+En el cuadro \ref{tab:Resultados obtenidos PM10 2014} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
+
+%\begin{table}[H]
+%	{\centering
+%		\caption{Resultados obtenidos PM10 2014}
+%		\begin{tabular}{|c|c|c|}
+%			\hline
+%			CIE & Coeficiente de Pearson & R-squared\\
+%			\hline
+%			O809 & -0.293 & 0.071\\
+%			\hline
+%			O829 & -0.066 & 0.060\\
+%			\hline
+%		\end{tabular}
+
+%	\label{tab:Resultados obtenidos PM10 2014}
+%	}
+%\end{table}
+
+\begin{table}[H]
+	{\centering
+		\caption{Resultados obtenidos PM10 2014}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			CIE & Coeficiente de Pearson & R-squared & P-value & Error (RMSE)\\
+			\hline
+			O809 & -0.293 & 0.071 & 0.034 & 18.543\%\\
+			\hline
+			O829 & -0.066 & 0.060 & 0.640 & 30.027\%\\
+			\hline
+		\end{tabular}
+
+	\label{tab:Resultados obtenidos PM10 2014}
+	}
+\end{table}
+
+%En el cuadro \ref{tab:Eficacia obtenida PM10 2014} se muestra la eficacia obtenida de los modelos generados.
+
+%\begin{table}[H]
+%	{\centering
+%		\caption{Eficacia obtenida PM10 2014}
+%		\begin{tabular}{|c|c|c|}
+%			\hline
+%			CIE & P-value & Error (RMSE)\\
+%			\hline
+%			O809 & 0.034 & 18.543\%\\
+%			\hline
+%			O829 & 0.640 & 30.027\%\\
+%			\hline
+%		\end{tabular}
+
+%	\label{tab:Eficacia obtenida PM10 2014}
+%	}
+%\end{table}
+
+% En la carpeta ... del repositorio del presente proyecto se encuentra una animación con las imágenes generadas para este año.
+
+%\subsubsection{Año 2015}
+%\subsubsection{Año 2016}
+%\subsubsection{Año 2017}
+%\subsubsection{Año 2018}
+
+\subsection{Experimento B: Niveles de PM2.5}
+\subsubsection{Año 2014}
+
+En la figura \ref{serie_de_tiempo_2015_PM25} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. Las demás imágenes se encuentran en el repositorio del presente proyecto.
+
+\begin{figure}[h!]
+\setcounter{figure}{1} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[width=1\textwidth]{PM2_5_O809_2014.eps}
+   \end{center}
+    \caption[Series de tiempo 2015 PM2.5 Y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2015.}
+    \label{serie_de_tiempo_2015_PM25}
+\end{figure}
+
+En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
+
+\begin{table}[H]
+	{\centering
+		\caption{Resultados obtenidos PM2.5 2015}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			CIE & Coeficiente de Pearson & R-squared & P-value & Error (RMSE)\\
+			\hline
+			O809 & -0.191 & 0.073 & 0.035 & 19.943\%\\
+			\hline
+			O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+			\hline
+		\end{tabular}
+
+	\label{tab:Resultados obtenidos PM2.5 2015}
+	}
+\end{table}
+
+%\subsubsection{Año 2015}
+%\subsubsection{Año 2016}
+%\subsubsection{Año 2017}
+
+%\subsection{Experimento C: Niveles de NOX}
+%\subsubsection{Año 2014}
+%\subsubsection{Año 2015}
+%\subsubsection{Año 2016}
+%\subsubsection{Año 2017}
+
+% \subsection{Experimento D: Niveles de NO2}
+% \subsubsection{PM10}
+% \subsubsection{PM2.5}
+% \subsubsection{NOX}
+% \subsubsection{NO2}
+
+%\subsection{Experimento E: Uso de datos del año 2018}
+%\subsubsection{PM10}
+%\subsubsection{PM2.5}
+%\subsubsection{NOX}
+%\subsubsection{NO2}
 
 \section{Discusión}
 Todos los experimentos son ejecutados en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
