@@ -75,7 +75,7 @@ En 1980 la REDPANAIRE desapareció y pasó a formar parte del Programa Global de
 
 En la década de 1990, la OMS organizó, con carácter global, el Sistema de Información para el Control de la Calidad del Aire llamado AMIS por sus siglas en inglés \emph{Air Management Information System}. Entre las actividades más destacadas de AMIS se incluye el coordinar las bases de datos sobre temas relacionados con la calidad del aire.
 
-En Nuevo León, México, las operaciones de la Red Automática de Monitoreo Atmosférico iniciaron en 1993. Dicha red en sus inicios contaba con cinco estaciones fijas de monitoreo continuo de monóxido de carbono (CO), dióxido de azufre (SO2), óxidos de nitrógeno (NOx), ozono y PM10 \citep{r4}. Como se muestra en la figura \ref{estaciones}, actualmente se cuenta con nueve estaciones fijas.
+En Nuevo León, México, las operaciones de la Red Automática de Monitoreo Atmosférico iniciaron en 1993. Dicha red en sus inicios contaba con cinco estaciones fijas de monitoreo continuo de monóxido de carbono (CO), dióxido de azufre (SO$_2$), óxidos de nitrógeno (NO$_x$), ozono y PM10 \citep{r4}. Como se muestra en la figura \ref{estaciones}, actualmente se cuenta con nueve estaciones fijas.
 
 \section{Series de tiempo}
 \citet{r4} mencionan que las relaciones entre niveles de concentraciones de contaminantes del aire y los efectos sobre la salud generalmente son obtenidas de estudios epidemiológicos de series de tiempo. Uno de los diseños epidemiológicos más utilizados son los estudios de series temporales. Con esos diseños se analizan las variaciones en el tiempo de la exposición al contaminante y el indicador de salud estudiado en una población \citep{r1}.
@@ -123,7 +123,7 @@ Se recopila literatura relacionada desde el año 2017 hasta el año 2021. En est
 
 \citet{r13} abordan la necesidad de monitoreo, control y predicción de la pendiente de los niveles de contaminantes del aire. Para abordar el problema de investigación utilizan modelos ARIMA. 
 
-\citet{r14} estudian la asociación entre la exposición a largo plazo a la contaminación del aire y la metilación del ADN. Para ello realizan un estudio utilizando modelos de regresión lineal robustos para analizar la asociación entre la exposición al NO2 y a las partículas PM10 y PM2.5.
+\citet{r14} estudian la asociación entre la exposición a largo plazo a la contaminación del aire y la metilación del ADN. Para ello realizan un estudio utilizando modelos de regresión lineal robustos para analizar la asociación entre la exposición al NO$_2$ y a las partículas PM10 y PM2.5.
 
 \citet{r15} en su estudio abordan los niveles de contaminación del aire y su asociación con la presencia de presión sanguínea elevada en niños y adolescentes. La exposición a partículas PM10 y PM2.5 son estimadas con un modelo espacio-temporal. Son utilizados modelos lineales de efectos mixtos y modelos de regresión logística para investigar la asociación entre la exposición a partículas PM y presión sanguínea e hipertensión. 
 
@@ -204,7 +204,7 @@ Como se puede observar en el cuadro \ref{tab:Comparación de trabajos frente al 
 
 Ya que la mayoría de los trabajos encontrados estudian la relación entre contaminantes del aire y salud, la mayoría de los trabajos emplean modelos de regresión lineal por que es una buena opción para el estudio de relaciones entre variables. Las excepciones, además de la ya anteriormente mencionada, son \citet{r17} y \citet{r18} quienes emplean otros tipos de modelos de regresión.
 
-En el presente trabajo se elaboran modelos de predicción para el tratamiento de los datos empleados para los experimentos, ya que como menciona \citet{r15}, una de las limitaciones en este tipo de estudios es los campos sin llenar en los registros de datos.
+En el presente trabajo se elaboran modelos de predicción para el tratamiento de los datos empleados para los experimentos, ya que como mencionan \citet{r15}, una de las limitaciones en este tipo de estudios es los campos sin llenar en los registros de datos.
 
 En el presente trabajo también se emplean técnicas para evaluar los modelos generados. Solo en tres de los trabajos encontrados se aborda la evaluación de los modelos empleados, y al ser incluida en el presente estudio, puede representar una distinción.
 
@@ -250,7 +250,7 @@ La primera fase es la recolección de datos. El objetivo es tener un archivo que
 % Reajustar tamaño de figuras
 
 \subsection{Selección y agrupación de datos}
-Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} que permite la manipulación de datos \ref{tab:Herramientas utilizadas}. 
+Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} \ref{tab:Herramientas utilizadas} que permite la manipulación de datos. 
 Para la selección y agrupación de datos se sigue el procedimiento mostrado en la figura \ref{alg:a1}.
 
 \begin{algorithm}
@@ -272,8 +272,8 @@ Para la selección y agrupación de datos se sigue el procedimiento mostrado en 
 Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en \texttt{Python} \ref{tab:Herramientas utilizadas} que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
 
 \subsubsection{Series de tiempo}
-Se realizan series de tiempo en Python con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos \ref{tab:Herramientas utilizadas}. 
-En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
+Se realizan series de tiempo en Python con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn} \ref{tab:Herramientas utilizadas}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos; en la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
+
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
@@ -286,13 +286,14 @@ En la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo
 
 \subsubsection{Gráficos de radar}
 Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib} \ref{tab:Herramientas utilizadas}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
+
 \begin{figure}[h!]
 \setcounter{figure}{1} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
    \includegraphics[width=1\textwidth]{Contaminantes-2017.eps}
    \end{center}
-    \caption[Ejemplo de gráficos de radar]{Niveles de los contaminantes NO2, NOX, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
+    \caption[Ejemplo de gráficos de radar]{Niveles de los contaminantes NO$_2$, NO$_x$, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
     \label{grafico_de_telaraña}
 \end{figure}
 \clearpage
@@ -526,7 +527,7 @@ En esta sección se tratan los resultados obtenidos partiendo de desarrollar alg
 En la presente sección se discute el diseño de experimentos, es decir, que valores constantes fueron utilizados para su realización y por que se usan dichos valores.
 
 \subsection{Datos de entrada}
-Los datos de egresos hospitalarios del año 2014 al año 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10, PM2.5, NOX Y NO2 presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citeauthor{f3}.
+Los datos de egresos hospitalarios del año 2014 al año 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10, PM2.5, NO$_x$ Y NO$_2$ presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
 
 \begin{description}
 \item [Selección de datos.] {Los conjuntos de datos por año de egresos hospitalarios contienen información de todos los estados de México, por lo cual se hace una limpieza de datos para solo obtener los registros de Nuevo León ya que de dicha entidad es de la cual se tienen los datos de contaminación.}
@@ -571,8 +572,8 @@ Se tienen algunas variables que pueden ser modificadas para la generación de lo
 También se tienen variables que indican información sobre la eficacia del modelo.
 
 \begin{itemize}
-	\item P-value.
-	\item R-squared.
+	\item Valor $p$.
+	\item $R^2$ (R quadrado).
 	\item Raíz de error cuadrático medio (RMSE).
 \end{itemize}
 
@@ -581,6 +582,8 @@ También se tienen variables que indican información sobre la eficacia del mode
 Establecidos las especificaciones de los experimentos que se realizan, se reportan los resultados obtenidos.
 % FORMULA PORCENTAJE ERROR
 \subsection{Experimento A: Datos de niveles de PM10}
+Se estudian los niveles del contaminante PM10 desde el año 2014 hasta el 2018.
+
 \subsubsection{Año 2014}
 
 En la figura \ref{serie_de_tiempo_2014_PM10} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. Las demás imágenes se encuentran en el repositorio del presente proyecto.
@@ -597,58 +600,40 @@ En la figura \ref{serie_de_tiempo_2014_PM10} se muestra una de las series de tie
 
 En el cuadro \ref{tab:Resultados obtenidos PM10 2014} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
 
-%\begin{table}[H]
-%	{\centering
-%		\caption{Resultados obtenidos PM10 2014}
-%		\begin{tabular}{|c|c|c|}
-%			\hline
-%			CIE & Coeficiente de Pearson & R-squared\\
-%			\hline
-%			O809 & -0.293 & 0.071\\
-%			\hline
-%			O829 & -0.066 & 0.060\\
-%			\hline
-%		\end{tabular}
+\begin{table}[hbt!]
+\centering
+\caption{Resultados obtenidos PM10 2014}
+\vspace{0.5cm}
+\begin{adjustbox}{width=0.5\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
+	\hline
+	O809 & -0.293 & 0.071 & 0.034 & 18.543\%\\
+	\hline
+	O829 & -0.066 & 0.060 & 0.640 & 30.027\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+\end{tabular}
+\end{adjustbox}
 
-%	\label{tab:Resultados obtenidos PM10 2014}
-%	}
-%\end{table}
-
-\begin{table}[H]
-	{\centering
-		\caption{Resultados obtenidos PM10 2014}
-		\begin{tabular}{|c|c|c|c|c|}
-			\hline
-			CIE & Coeficiente de Pearson & R-squared & P-value & Error (RMSE)\\
-			\hline
-			O809 & -0.293 & 0.071 & 0.034 & 18.543\%\\
-			\hline
-			O829 & -0.066 & 0.060 & 0.640 & 30.027\%\\
-			\hline
-		\end{tabular}
-
-	\label{tab:Resultados obtenidos PM10 2014}
-	}
+\label{tab:Resultados obtenidos PM10 2014}
 \end{table}
-
-%En el cuadro \ref{tab:Eficacia obtenida PM10 2014} se muestra la eficacia obtenida de los modelos generados.
-
-%\begin{table}[H]
-%	{\centering
-%		\caption{Eficacia obtenida PM10 2014}
-%		\begin{tabular}{|c|c|c|}
-%			\hline
-%			CIE & P-value & Error (RMSE)\\
-%			\hline
-%			O809 & 0.034 & 18.543\%\\
-%			\hline
-%			O829 & 0.640 & 30.027\%\\
-%			\hline
-%		\end{tabular}
-
-%	\label{tab:Eficacia obtenida PM10 2014}
-%	}
-%\end{table}
 
 % En la carpeta ... del repositorio del presente proyecto se encuentra una animación con las imágenes generadas para este año.
 
@@ -674,34 +659,52 @@ En la figura \ref{serie_de_tiempo_2015_PM25} se muestra una de las series de tie
 
 En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
 
-\begin{table}[H]
-	{\centering
-		\caption{Resultados obtenidos PM2.5 2015}
-		\begin{tabular}{|c|c|c|c|c|}
-			\hline
-			CIE & Coeficiente de Pearson & R-squared & P-value & Error (RMSE)\\
-			\hline
-			O809 & -0.191 & 0.073 & 0.035 & 19.943\%\\
-			\hline
-			O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-			\hline
-		\end{tabular}
-
-	\label{tab:Resultados obtenidos PM2.5 2015}
-	}
+\begin{table}[hbt!]
+\centering
+\caption{Resultados obtenidos PM2.5 2015}
+\vspace{0.5cm}
+\begin{adjustbox}{width=0.5\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
+	\hline
+	O809 & -0.191 & 0.073 & 0.035 & 19.943\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	\hline
+\end{tabular}
+\end{adjustbox}
+		
+\label{tab:Resultados obtenidos PM2.5 2015}
 \end{table}
 
 %\subsubsection{Año 2015}
 %\subsubsection{Año 2016}
 %\subsubsection{Año 2017}
 
-%\subsection{Experimento C: Niveles de NOX}
+%\subsection{Experimento C: Niveles de NO$_x$}
 %\subsubsection{Año 2014}
 %\subsubsection{Año 2015}
 %\subsubsection{Año 2016}
 %\subsubsection{Año 2017}
 
-% \subsection{Experimento D: Niveles de NO2}
+% \subsection{Experimento D: Niveles de NO$_2$}
 % \subsubsection{PM10}
 % \subsubsection{PM2.5}
 % \subsubsection{NOX}
