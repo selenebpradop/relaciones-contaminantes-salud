@@ -47,6 +47,7 @@
 \renewcommand{\tablename}{Cuadro}
 \renewcommand{\arraystretch}{1.4}
 
+
 % Caracteres usados en código 
 \lstset{
     language=Python,
@@ -62,6 +63,31 @@
         {Í}{{\'I}}1
         {Ó}{{\'O}}1
 }
+% Estilo de código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{pys}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\bfseries\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\tiny,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=25pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=true,                  
+    tabsize=2
+}
+\lstset{style=pys}
+
 
 %%%%%%%%%%%%%%%%%%%%%
 % Definiendo campos %

@@ -291,7 +291,7 @@ Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un
 \setcounter{figure}{1} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{Contaminantes-2017.eps}
+   \includegraphics[width=1\textwidth]{spiderweb_PM10_2014_1.eps}
    \end{center}
     \caption[Ejemplo de gráficos de radar]{Niveles de los contaminantes NO$_2$, NO$_x$, PM10, y PM2.5 durante las primeras 6 semanas del 2017.}
     \label{grafico_de_telaraña}
@@ -320,7 +320,7 @@ En implementación de la solución propuesta se muestra el desarrollo realizado 
 
 \clearpage
 
-\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Procesamiento y agrupamiento de datos, label=lst:c1]
+\begin{lstlisting}[language=Python, caption=Procesamiento y agrupamiento de datos, label=lst:c1]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -366,7 +366,7 @@ for i in range (n):
     dataframesca[contaminante][i] = promediocas
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, basicstyle=\tiny, caption=Generación de series de tiempo, label=lst:c2]
+\begin{lstlisting}[language=Python, caption=Generación de series de tiempo, label=lst:c2]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -423,7 +423,7 @@ for name in diagnosticosaño.index:
     cont = cont+1
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Generación de graficos de radar, basicstyle=\tiny, label=lst:c3]
+\begin{lstlisting}[language=Python, caption=Generación de graficos de radar, label=lst:c3]
 def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_labels, colors, typeframe):
 
     # Set the number of lines of each spiderweb
@@ -476,7 +476,7 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
     plt.show()
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal, basicstyle=\tiny, label=lst:c4]
+\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal, label=lst:c4]
 datos = pd.DataFrame(dataframegacc, columns=col_names)
 # Gráfico
 # ==============================================================================
@@ -527,7 +527,7 @@ En esta sección se tratan los resultados obtenidos partiendo de desarrollar alg
 En la presente sección se discute el diseño de experimentos, es decir, que valores constantes fueron utilizados para su realización y por que se usan dichos valores.
 
 \subsection{Datos de entrada}
-Los datos de egresos hospitalarios del año 2014 al año 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10, PM2.5, NO$_x$ Y NO$_2$ presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
+Los datos de egresos hospitalarios del año 2015 al año 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10, PM2.5, NO$_x$ Y NO$_2$ presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
 
 \begin{description}
 \item [Selección de datos.] {Los conjuntos de datos por año de egresos hospitalarios contienen información de todos los estados de México, por lo cual se hace una limpieza de datos para solo obtener los registros de Nuevo León ya que de dicha entidad es de la cual se tienen los datos de contaminación.}
@@ -573,91 +573,80 @@ También se tienen variables que indican información sobre la eficacia del mode
 
 \begin{itemize}
 	\item Valor $p$.
-	\item $R^2$ (R quadrado).
+	\item $R^2$ (R cuadrado).
 	\item Raíz de error cuadrático medio (RMSE).
 \end{itemize}
 
 
 \section{Resultados}
 Establecidos las especificaciones de los experimentos que se realizan, se reportan los resultados obtenidos.
+
 % FORMULA PORCENTAJE ERROR
 \subsection{Experimento A: Datos de niveles de PM10}
-Se estudian los niveles del contaminante PM10 desde el año 2014 hasta el 2018.
+Se estudian los niveles del contaminante PM10 desde el año 2015 hasta el 2018.
 
-\subsubsection{Año 2014}
-
-En la figura \ref{serie_de_tiempo_2014_PM10} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. Las demás imágenes se encuentran en el repositorio del presente proyecto.
+\subsubsection{Año 2015}
+En la figura \ref{serie_de_tiempo_2015_PM10} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. Las demás imágenes se encuentran en el repositorio del presente proyecto.
 
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM10_O809_2014.eps}
+   \includegraphics[width=1\textwidth]{PM10_O809_2015.eps}
    \end{center}
-    \caption[Series de tiempo 2014 PM10 Y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2014.}
-    \label{serie_de_tiempo_2014_PM10}
+    \caption[Series de tiempo 2015 PM10 Y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2015.}
+    \label{serie_de_tiempo_2015_PM10}
 \end{figure}
 
-En el cuadro \ref{tab:Resultados obtenidos PM10 2014} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
+En el cuadro \ref{tab:Resultados obtenidos PM10 2015} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
 
 \begin{table}[hbt!]
 \centering
-\caption{Resultados obtenidos PM10 2014}
+\caption{Resultados obtenidos PM10 2015}
 \vspace{0.5cm}
 \begin{adjustbox}{width=0.5\textwidth}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
+	CIE & \rotatebox[origin=c]{90}{ Coeficiente  correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
 	\hline
-	O809 & -0.293 & 0.071 & 0.034 & 18.543\%\\
+	O809 & -0.437 & 0.229 & 0.001 & 20.437\%\\
 	\hline
-	O829 & -0.066 & 0.060 & 0.640 & 30.027\%\\
+	O829 & -0.277 & 0.048 & 0.046 & 31.908\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	O759 & -0.080 & 0.007 & 0.569 & 23.646\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	O069 & -0.213 & 0.028 & 0.129 & 26.504\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	K802 & -0.210 & 0.025 & 0.134 & 29.125\%\\
 	\hline
 \end{tabular}
 \end{adjustbox}
 
-\label{tab:Resultados obtenidos PM10 2014}
+\label{tab:Resultados obtenidos PM10 2015}
 \end{table}
 
 % En la carpeta ... del repositorio del presente proyecto se encuentra una animación con las imágenes generadas para este año.
 
-%\subsubsection{Año 2015}
 %\subsubsection{Año 2016}
 %\subsubsection{Año 2017}
 %\subsubsection{Año 2018}
 
 \subsection{Experimento B: Niveles de PM2.5}
-\subsubsection{Año 2014}
 
+\subsubsection{Año 2015}
 En la figura \ref{serie_de_tiempo_2015_PM25} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. Las demás imágenes se encuentran en el repositorio del presente proyecto.
 
 \begin{figure}[h!]
 \setcounter{figure}{1} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM2_5_O809_2014.eps}
+   \includegraphics[width=1\textwidth]{PM2_5_O809_2015.eps}
    \end{center}
     \caption[Series de tiempo 2015 PM2.5 Y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2015.}
     \label{serie_de_tiempo_2015_PM25}
 \end{figure}
 
-En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos.
+En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. 
 
 \begin{table}[hbt!]
 \centering
@@ -668,25 +657,15 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultad
 	\hline
 	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
 	\hline
-	O809 & -0.191 & 0.073 & 0.035 & 19.943\%\\
+	O809 & -0.248 & 0.052 & 0.075 & 18.575\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	O829 & -0.212 & 0.003 & 0.129 & 33.169\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	O759 & -0.033 & 0.024 & 0.811 & 25.059\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	O069 & 0.001 & 0.004 & 0.993 & 28.123\%\\
 	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
-	\hline
-	O829 & -0.068 & 0.061 & 0.040 & 21.127\%\\
+	K802 & -0.197 & 0.061 & 0.160 & 29.453\%\\
 	\hline
 \end{tabular}
 \end{adjustbox}
@@ -694,31 +673,25 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultad
 \label{tab:Resultados obtenidos PM2.5 2015}
 \end{table}
 
-%\subsubsection{Año 2015}
 %\subsubsection{Año 2016}
 %\subsubsection{Año 2017}
+%\subsubsection{Año 2018}
 
 %\subsection{Experimento C: Niveles de NO$_x$}
-%\subsubsection{Año 2014}
 %\subsubsection{Año 2015}
 %\subsubsection{Año 2016}
 %\subsubsection{Año 2017}
+%\subsubsection{Año 2018}
 
-% \subsection{Experimento D: Niveles de NO$_2$}
-% \subsubsection{PM10}
-% \subsubsection{PM2.5}
-% \subsubsection{NOX}
-% \subsubsection{NO2}
+%\subsection{Experimento D: Niveles de NO$_2$}
+%\subsubsection{Año 2015}
+%\subsubsection{Año 2016}
+%\subsubsection{Año 2017}
+%\subsubsection{Año 2018}
 
-%\subsection{Experimento E: Uso de datos del año 2018}
-%\subsubsection{PM10}
-%\subsubsection{PM2.5}
-%\subsubsection{NOX}
-%\subsubsection{NO2}
-
+\clearpage
 \section{Discusión}
 Todos los experimentos son ejecutados en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
-
 \begin{table}[H]
 	{\centering
 		\caption{Especificaciones técnicas del equipo de cómputo}
@@ -735,6 +708,13 @@ Todos los experimentos son ejecutados en una laptop con las especificaciones del
 	\label{tab:Especificaciones técnicas del PC}
 	}
 \end{table}
+
+Como se puede observar, en todos los experimentos se obtuvo una correlación entre -1 y 1, lo cual indica que existe una correlación lineal.
+
+En el Experimento A los porcentajes de error están entre 20.437\% y 31.908\%, lo cual indica que los resultados son aceptables pero que aún no se alcanza una fiabilidad óptima. La CIE \citep{r9} O809 es la que presenta un menor porcentaje de error, y es donde se presenta una mayor correlación con el contaminante.
+
+En el Experimento B los porcentajes de error están entre 18.575\% y 33.169\%, lo cual indica que los resultados son aceptables pero que aún no se alcanza una fiabilidad óptima, excepto para la CIE \citep{r9} O809, en la cual se encuentra un porcentaje de error fiable, y es donde se presenta una mayor correlación con el contaminante.
+
 
 \chapter{Conclusiones}
 Este capítulo describe la tesis a partir de la manera que cumple los objetivos generales y específicos para determinar si la hipótesis se comprueba, trata también del porque se realizó la tesis...
