@@ -101,10 +101,10 @@ Un modelo de regresión múltiple es un modelo complemento de la regresión line
     \label{eq2}
 \end{equation}
 
-\section{Modelos ARIMA}
-Los modelos autorregresivos integrados de media móvil o ARIMA, por su abreviatura en inglés abarcan un catalogo de aproximaciones para el estudio de series de tiempo. 
+%\section{Modelos ARIMA}
+%Los modelos autorregresivos integrados de media móvil o ARIMA, por su abreviatura en inglés abarcan un catalogo de aproximaciones para el estudio de series de tiempo. 
 
-Los modelos ARIMA utilizan variaciones y regresiones de datos estadísticos con el fin de encontrar patrones para una predicción hacia el futuro. 
+%Los modelos ARIMA utilizan variaciones y regresiones de datos estadísticos con el fin de encontrar patrones para una predicción hacia el futuro. 
 
 \chapter{Estado del arte}
 En el presente capítulo se estudia literatura reciente relacionada con el presente trabajo, esto con el objetivo de revisar distintos métodos para resolver el problema planteado en el presente trabajo y, además, también revisar implementaciones similares para resolver problemas distintos. Lo anterior tiene la finalidad de comparar los trabajos revisados e identificar áreas de oportunidad en ellos.
@@ -627,86 +627,6 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2015} se presentan los resultado
 	
 % En la carpeta ... del repositorio del presente proyecto se encuentra una animación con las imágenes generadas para este año.
 
-\subsubsection{Año 2016}
-
-\begin{table}[hbt!]
-\centering
-\caption{Resultados obtenidos PM10 2016}
-\vspace{0.5cm}
-\begin{adjustbox}{width=0.5\textwidth}
-\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente  correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
-	\hline
-	F200 & -0.051 & 0.000 & 0.718 & 14.407\%\\
-	\hline
-	O809 & 0.109 & 0.002 & 0.438 & 37.968\%\\
-	\hline
-	F312 & 0.030 & 0.003 & 0.829 & 14.988\%\\
-	\hline
-	C029 & -0.173 & 0.026 & 0.219 & 64.910\%\\
-	\hline
-	F710 & -0.280 & 0.044 & 0.044 & 18.540\%\\
-	\hline
-\end{tabular}
-\end{adjustbox}
-
-\label{tab:Resultados obtenidos PM10 2016}
-\end{table}
-
-\subsubsection{Año 2017}
-
-\begin{table}[hbt!]
-\centering
-\caption{Resultados obtenidos PM10 2017}
-\vspace{0.5cm}
-\begin{adjustbox}{width=0.5\textwidth}
-\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente  correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
-	\hline
-	O809 & -0.275 & 0.061 & 0.048 & 22.389\%\\
-	\hline
-	O829 & 0.099 & 0.091 & 0.481 & 28.706\%\\
-	\hline
-	O759 & -0.085 & 0.116 & 0.547 & 37.943\%\\
-	\hline
-	O069 & -0.247 & 0.070 & 0.077 & 22.208\%\\
-	\hline
-	K802 & 0.043 & 0.005 & 0.756 & 29.769\%\\
-	\hline
-\end{tabular}
-\end{adjustbox}
-
-\label{tab:Resultados obtenidos PM10 2017}
-\end{table}
-
-\subsubsection{Año 2018}
-
-\begin{table}[hbt!]
-\centering
-\caption{Resultados obtenidos PM10 2018}
-\vspace{0.5cm}
-\begin{adjustbox}{width=0.5\textwidth}
-\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente  correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
-	\hline
-	O809 & -0.271 & 0.015 & 0.051 & 29.593\%\\
-	\hline
-	O829 & 0.282 & 0.069 & 0.042 & 24.935\%\\
-	\hline
-	K802 & 0.277 & 0.084 & 0.046 & 15.234\%\\
-	\hline
-	O342 & -0.401 & 0.100 & 0.003 & 24.757\%\\
-	\hline
-	N40X & -0.007 & 0.000 & 0.960 & 25.152\%\\
-	\hline
-\end{tabular}
-\end{adjustbox}
-
-\label{tab:Resultados obtenidos PM10 2018}
-\end{table}
 
 \subsection{Experimento B: Niveles de PM2.5}
 
@@ -750,86 +670,6 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2015} se presentan los resultad
 \label{tab:Resultados obtenidos PM2.5 2015}
 \end{table}
 
-\subsubsection{Año 2016}
-
-\begin{table}[hbt!]
-\centering
-\caption{Resultados obtenidos PM2.5 2016}
-\vspace{0.5cm}
-\begin{adjustbox}{width=0.5\textwidth}
-\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
-	\hline
-	F200 & -0.084 & 0.008 & 0.553 & 14.639\%\\
-	\hline
-	O809 & -0.044 & 0.000 & 0.753 & 38.505\%\\
-	\hline
-	F312 & -0.074 & 0.020 & 0.601 & 15.425\%\\
-	\hline
-	F710 & -0.078 & 0.001 & 0.580 & 20.275\%\\
-	\hline
-	C029 & -0.193 & 0.008 & 0.170 & 64.894\%\\
-	\hline
-\end{tabular}
-\end{adjustbox}
-		
-\label{tab:Resultados obtenidos PM2.5 2016}
-\end{table}
-
-\subsubsection{Año 2017}
-
-\begin{table}[hbt!]
-\centering
-\caption{Resultados obtenidos PM2.5 2017}
-\vspace{0.5cm}
-\begin{adjustbox}{width=0.5\textwidth}
-\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
-	\hline
-	O809 & -0.092 & 0.011 & 0.512 & 23.924\%\\
-	\hline
-	O829 & 0.013 & 0.021 & 0.922 & 25.280\%\\
-	\hline
-	O759 & -0.172 & 0.113 & 0.222 & 35.924\%\\
-	\hline
-	O069 & -0.349 & 0.112 & 0.011 & 20.803\%\\
-	\hline
-	K802 & 0.006 & 0.005 & 0.964 & 30.032\%\\
-	\hline
-\end{tabular}
-\end{adjustbox}
-		
-\label{tab:Resultados obtenidos PM2.5 2017}
-\end{table}
-
-\subsubsection{Año 2018}
-
-\begin{table}[hbt!]
-\centering
-\caption{Resultados obtenidos PM2.5 2018}
-\vspace{0.5cm}
-\begin{adjustbox}{width=0.5\textwidth}
-\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	CIE & \rotatebox[origin=c]{90}{ Coeficiente de correlación de Pearson } & \rotatebox[origin=c]{90}{ $R^2$ } & \rotatebox[origin=c]{90}{ Valor $p$ } & \rotatebox[origin=c]{90}{ Error (RMSE) }\\
-	\hline
-	O809 & -0.353 & 0.057 & 0.010 & 27.850\%\\
-	\hline
-	O829 & 0.225 & 0.046 & 0.108 & 25.645\%\\
-	\hline
-	K802 & 0.272 & 0.089 & 0.050 & 15.943\%\\
-	\hline
-	O342 & -0.443 & 0.149 & 0.001 & 24.525\%\\
-	\hline
-	N40X & -0.073 & 0.001 & 0.606 & 24.975\%\\
-	\hline
-\end{tabular}
-\end{adjustbox}
-		
-\label{tab:Resultados obtenidos PM2.5 2018}
-\end{table}
 
 %\subsection{Experimento C: Niveles de NO$_x$}
 %\subsubsection{Año 2015}
@@ -865,18 +705,21 @@ Todos los experimentos son ejecutados en una laptop con las especificaciones del
 
 Como se puede observar, en todos los experimentos se obtuvo una correlación entre -1 y 1, lo cual indica que existe una correlación lineal.
 
-En el Experimento A los porcentajes de error están entre 20.437\% y 31.908\%, lo cual indica que los resultados son aceptables pero que aún no se alcanza una fiabilidad óptima. La CIE \citep{r9} O809 es la que presenta un menor porcentaje de error, y es donde se presenta una mayor correlación con el contaminante.
+En el Experimento A los porcentajes de error están entre 20.437\% y 31.908\%, lo cual indica que los resultados son aceptables pero que aún no se alcanza una fiabilidad mayor al 80\%. La CIE \citep{r9} O809 es la que presenta un menor porcentaje de error, y es donde se presenta una mayor correlación con el contaminante.
 
-En el Experimento B los porcentajes de error están entre 18.575\% y 33.169\%, lo cual indica que los resultados son aceptables pero que aún no se alcanza una fiabilidad óptima, excepto para la CIE \citep{r9} O809, en la cual se encuentra un porcentaje de error fiable, y es donde se presenta una mayor correlación con el contaminante.
+En el Experimento B los porcentajes de error están entre 18.575\% y 33.169\%, lo cual indica que los resultados son aceptables pero que aún no se alcanza una fiabilidad mayor al 80\%, excepto para la CIE \citep{r9} O809, en la cual se encuentra un porcentaje de error deseado, y es donde se presenta una mayor correlación con el contaminante.
 
 
 \chapter{Conclusiones}
-Este capítulo describe la tesis a partir de la manera que cumple los objetivos generales y específicos para determinar si la hipótesis se comprueba, trata también del porque se realizó la tesis...
+Este capítulo describe la tesis a partir de la manera que cumple los objetivos generales y específicos para determinar si la hipótesis se comprueba, trata también del porque se realizó la tesis.
+En el presente proyecto se generaron visualizaciones para el estudio de las relaciones entre determinados contaminantes y determinadas CIE. Además, se generaron modelos de regresión lineal con diferentes contaminantes y diferentes CIE para poder realizar una comparación entre los modelos generados.
+
+Debido a que existe una correlación, se pudieron generar gráficos a partir de los modelos generados.
 
 \clearpage
 
-\section{Contribuciones}
-La solución propuesta surgió a partir de...
+%\section{Contribuciones}
+%La solución propuesta surgió a partir de...
 
 \section{Trabajo a futuro}
-La solución propuesta en la tesis...
+Algunos puntos a considerar para trabajo a futuro son: la recolección de más datos de los niveles de contaminantes para el estudio de años más recientes, creación de un mapa interactivo donde se pueda observar por región los niveles de los contaminantes y la cantidad de egresos, y la generación de una página web que funcione en conjunto con el desarrollo elaborado para que al ingresar el archivo con los datos se generen las visualizaciones y modelos.
