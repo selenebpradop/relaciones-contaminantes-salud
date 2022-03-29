@@ -82,6 +82,10 @@ ENTRY
     title
     type
     url
+    doi
+    isbn
+    issn
+    pmid
     volume
     year
   }
@@ -333,6 +337,35 @@ FUNCTION {bibinfo.warn}
     }
   if$
 }
+
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+    { new.block "\doi{" doi * "}" * }
+  if$
+}
+
+FUNCTION {format.pmid}
+{ pmid empty$
+    { "" }
+    { new.block "\pmid{" pmid * "}" * }
+  if$
+}
+
+FUNCTION {format.isbn}
+{ isbn empty$
+    { "" }
+    { new.block "ISBN " isbn * }
+  if$
+}
+
+FUNCTION {format.issn}
+{ issn empty$
+    { "" }
+    { new.block "ISSN " issn * }
+  if$
+}
+
 FUNCTION {format.eprint}
 { eprint duplicate$ empty$
     'skip$
@@ -447,6 +480,7 @@ FUNCTION {format.names.ed}
   while$
   } if$
 }
+
 FUNCTION {format.key}
 { empty$
     { key field.or.null }
@@ -1027,9 +1061,10 @@ FUNCTION {article}
     { format.journal.eid }
   if$
   format.note output
-
   format.eprint output
-  format.url output
+  format.doi output
+  format.pmid output
+  format.isbn output
   fin.entry
 }
 FUNCTION {book}
@@ -1061,6 +1096,10 @@ FUNCTION {book}
   format.note output
 
   format.eprint output
+  format.doi output
+  format.pmid output
+  format.issn output
+  format.isbn output
   format.url output
   fin.entry
 }
@@ -1074,6 +1113,9 @@ FUNCTION {booklet}
   end.quote.title
   howpublished "howpublished" bibinfo.check output
   address "address" bibinfo.check output
+  format.doi output
+  format.issn output
+  format.isbn output
   format.note output
 
   format.eprint output
@@ -1575,23 +1617,32 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\natexlab}[1]{#1}"
   write$ newline$
+  "  \providecommand{\doi}[1]{doi: #1}"
+  write$ newline$
+  "  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}"
+  write$ newline$
+  "  \providecommand{\pmid}[1]{pmid: #1}"
+  write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
   "\providecommand{\urlprefix}{URL }"
   write$ newline$
   "\providecommand{\selectlanguage}[1]{\relax}"
   write$ newline$
-  "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$
-  "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}" write$ newline$
+  "\newcommand{\Capitalize}[1]{\uppercase{#1}}" 
+  write$ newline$
+  "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}"
+   write$ newline$
   "\providecommand{\bibAnnoteFile}[1]{%"
   write$ newline$
-  "  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\"
+  "  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1"
   write$ newline$
   "  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}"
   write$ newline$
   "\providecommand{\bibAnnote}[2]{%"
   write$ newline$
-  "  \begin{quotation}\noindent\textsc{Key:} #1\\"
+  "  \begin{quotation}\noindent\textsc{Key:} #1"
+
   write$ newline$
   "  \textsc{Annotation:}\ #2\end{quotation}}"
   write$ newline$

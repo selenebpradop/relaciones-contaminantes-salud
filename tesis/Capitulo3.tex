@@ -1,0 +1,102 @@
+\chapter{Estado del arte}
+
+En el presente capítulo se estudia literatura reciente relacionada con el presente trabajo, esto con el objetivo de revisar distintos métodos para resolver el problema planteado en el presente trabajo y, además, también revisar implementaciones similares para resolver problemas distintos. Lo anterior tiene la finalidad de comparar los trabajos revisados e identificar áreas de oportunidad en ellos.
+
+En la primera sección, \emph{trabajos relacionados}, se recopilan obras con características relacionadas al presente trabajo, ya sean relacionados con el problema que se pretende resolver o con los métodos empleados para buscar su resolución.
+
+En la segunda sección, \emph{análisis comparativo}, se comparan las distintas características de los trabajos revisados, de esa forma se pueden determinar las principales ventajas y desventajas de cada trabajo. 
+
+Finalmente, en la tercera sección, \emph{áreas de oportunidad}, se realiza una conclusión acerca de los resultados obtenidos del análisis comparativo.
+
+\clearpage
+\section{Trabajos relacionados}
+Se recopila literatura relacionada desde el año 2017 hasta el año 2021. En esta sección los trabajos se mencionan en orden cronológico tomando en cuenta su año de publicación.
+
+\citet{r12} estudian la relación entre los niveles de contaminantes ambientales y la presencia de casos de enfermedades respiratorias en las consultas pediátricas. La variable dependiente analizada es la demanda en las consultas pediátricas por bronquiolitis, episodios de broncoespasmo y procesos respiratorios de vías altas. Como variables independientes se tienen los valores de contaminación ambiental. Se calculan coeficientes de correlación y regresión lineal múltiple.
+
+\citet{r13} abordan la necesidad de monitoreo, control y predicción de la pendiente de los niveles de contaminantes del aire. Para abordar el problema de investigación utilizan modelos ARIMA. 
+
+\citet{r14} estudian la asociación entre la exposición a largo plazo a la contaminación del aire y la metilación del ADN. Para ello realizan un estudio utilizando modelos de regresión lineal robustos para analizar la asociación entre la exposición al NO$_2$ y a las partículas PM10 y PM2.5.
+
+\citet{r15} en su estudio abordan los niveles de contaminación del aire y su asociación con la presencia de presión sanguínea elevada en niños y adolescentes. La exposición a partículas PM10 y PM2.5 son estimadas con un modelo espacio-temporal. Son utilizados modelos lineales de efectos mixtos y modelos de regresión logística para investigar la asociación entre la exposición a partículas PM y presión sanguínea e hipertensión. 
+
+\citet{r16} estudian la relación entre los niveles de contaminación del aire y la obesidad y problemas cardiometabolicos. Para dicho estudio emplean modelos de regresión lineal.
+
+\citet{r17} examinan las asociaciones entre la exposición temprana a la contaminación del aire y la incidencia de asma y rinitis alérgica desde el nacimiento hasta la adolescencia. Para su estudio utilizan modelos de regresión.
+
+\citet{r18} estudian la asociación entre la exposición temprana a los contaminantes del aire y los egresos hospitalarios por asma. Para su estudio aplican modelos de regresión logística para el análisis de datos. 
+
+\citet{r19} abordan el estudio de la relación entre los niveles de contaminación del aire y el número de admisiones hospitalarias. Para ello se construye un modelo basado en la distribución de Poisson.
+
+\citet{r20} estudian la relación entre la mortalidad del coronavirus (COVID-19) y la contaminación del aire. Para dicho estudio emplean un modelo de regresión lineal para establecer la relación entre los parámetros de la contaminación del aire (concentraciones de PM10 o PM2.5) y la variable de respuesta (porcentaje
+mortalidad por unidad de casos reportados).
+\clearpage
+
+\section{Comparación de trabajos}
+La mayoría de los trabajos encontrados emplean modelos de regresión lineal o modelos de predicción. Además, en todos los trabajos encontrados el problema tratado presenta una alta relación con el problema abordado en el presente trabajo de tesis. El análisis comparativo de los trabajos relacionados se hace en base de los siguientes puntos:
+
+\begin{description}
+\item[Modelos de regresión lineal:]{Son aquellos que ayudan a estudiar la relación entre una variable dependiente y una o más variables independientes.}
+\end{description}
+
+\begin{description}
+\item[Modelos de predicción:]{Son aquellos que ayudan a hacer predicciones de una variable.}
+\end{description}
+
+\begin{description}
+\item[Evaluación de modelos:]{Se refiere a la utilización de técnicas para evaluar la eficacia de los modelos generados.}
+\end{description}
+
+\begin{description}
+\item[Estudio de contaminantes del aire:]{Se refiere a que el tema de estudio incluya uno o más contaminantes del aire.}
+\end{description}
+
+\begin{description}
+\item[Estudio de problemas de salud:]{Se refiere a que el tema de estudio incluya uno o más problemas de salud.}
+\end{description}
+
+En el cuadro \ref{tab:Comparación de trabajos frente al desarrollado} se desglosan que características presentes  que se pueden encontrar en las investigaciones citadas y su relación con la investigación con la que se está trabajando actualmente.\\
+
+\begin{table}[hbt!]
+\centering
+\caption{Comparación de trabajos frente al desarrollado, donde $\checkmark$ indica que cumple con esta característica y  $\times$ no cumple con esta característica.}
+\vspace{0.5cm}
+\begin{adjustbox}{width=0.5\textwidth}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Trabajo & \rotatebox[origin=c]{90}{ Modelos de regresión lineal } & \rotatebox[origin=c]{90}{ Modelos de predicción } & \rotatebox[origin=c]{90}{ Evaluación de modelos } & \rotatebox[origin=c]{90}{ Estudio de contaminantes del aire } & \rotatebox[origin=c]{90}{ Estudio de problemas de salud }\\
+	\hline
+    \citet{r12} & \checkmark & $\times$ & $\times$ & \checkmark & \checkmark\\
+    \hline
+    \citet{r13} &  $\times$ & \checkmark & \checkmark & \checkmark & $\times$\\
+    \hline
+    \citet{r14} & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark\\
+    \hline
+    \citet{r15} & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark\\
+	\hline    
+    \citet{r16}& \checkmark & $\times$ & $\times$ & \checkmark & \checkmark\\
+	\hline    
+    \citet{r17} & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark\\
+	\hline    
+    \citet{r18} & $\times$  & $\times$ & $\times$ & \checkmark & \checkmark\\
+	\hline    
+    \citet{r19} & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark\\
+	\hline    
+    \citet{r20} &  \checkmark & \checkmark & $\times$ & \checkmark & \checkmark\\
+	\hline    
+    El presente trabajo & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark\\
+    \hline
+\end{tabular}
+\end{adjustbox}
+\label{tab:Comparación de trabajos frente al desarrollado}
+\end{table}
+\clearpage
+
+\subsection{Áreas de oportunidad}
+Como se puede observar en el cuadro \ref{tab:Comparación de trabajos frente al desarrollado}, la mayoría de los trabajos encontrados abordan el estudio de los contaminantes del aire y salud con excepción de \citet{r13} que se enfocan en la predicción de niveles de contaminantes del aire, lo cual puede indicar que la relación entre los contaminantes del aire y salud es un tema de relevancia en la actualidad. 
+
+Ya que la mayoría de los trabajos encontrados estudian la relación entre contaminantes del aire y salud, la mayoría de los trabajos emplean modelos de regresión lineal por que es una buena opción para el estudio de relaciones entre variables. Las excepciones, además de la ya anteriormente mencionada, son \citet{r17} y \citet{r18} quienes emplean otros tipos de modelos de regresión.
+
+En el presente trabajo se elaboran modelos de predicción para el tratamiento de los datos empleados para los experimentos, ya que como mencionan \citet{r15}, una de las limitaciones en este tipo de estudios es los campos sin llenar en los registros de datos.
+
+En el presente trabajo también se emplean técnicas para evaluar los modelos generados. Solo en tres de los trabajos encontrados se aborda la evaluación de los modelos empleados, y al ser incluida en el presente estudio, puede representar una distinción.
