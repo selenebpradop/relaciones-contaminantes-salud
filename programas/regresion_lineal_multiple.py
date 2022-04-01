@@ -1,13 +1,13 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 import statsmodels.api as sm
-from scipy import stats
 from sklearn.metrics import mean_squared_error
 
 
 
-def rlm(datarlm, spoke_labels, contaminante, exclude_p):
+def rlm(datarlm, spoke_labels, contaminante, año, exclude_p):
 
     """
     Create a radar chart with variables to compare.
@@ -69,38 +69,30 @@ def rlm(datarlm, spoke_labels, contaminante, exclude_p):
     modelo = modelo.fit()
     print(modelo.summary())
     sml = modelo.summary().as_latex()
-    namefile = 'modelos_latex/' + 'regresion_lineal_multiple_' + col_names[0] + '_' + año + '.tex'
+    namefile = 'modelos_latex/' + 'regresion_lineal_multiple_' + contaminante + '_' + año + '.tex'
     f = open(namefile, 'w')
     with open(namefile, 'w') as f:
         f.write(sml)
     # Creación del modelo utilizando matrices
     # ==============================================================================
     # Se eliminan las columnas con p-value>0.5 del conjunto de train y test
-    X_train = X_train.drop(columns = exclude_p)
-    X_test  = X_test.drop(columns = exclude_p)
+    #X_train = X_train.drop(columns = exclude_p)
+    #X_test  = X_test.drop(columns = exclude_p)
     # A la matriz de predictores se le tiene que añadir una columna de 1s para el
     # intercept del modelo
-    X_train = sm.add_constant(X_train, prepend=True)
-    modelo  = sm.OLS(endog=y_train, exog=X_train,)
-    modelo  = modelo.fit()
-    print(modelo.summary())
-    namefile = 'modelos_latex_fixed/' + 'regresion_lineal_multiple_' + col_names[0] + '_' + año + '.tex'
-    f = open(namefile, 'w')
-    with open(namefile, 'w') as f:
-        f.write(sml)
+    #X_train = sm.add_constant(X_train, prepend=True)
+    #modelo  = sm.OLS(endog=y_train, exog=X_train,)
+    #modelo  = modelo.fit()
+    #print(modelo.summary())
+    #namefile = 'modelos_latex_fixed/' + 'regresion_lineal_multiple_' + contaminante + '_' + año + '.tex'
+    #f = open(namefile, 'w')
+    #with open(namefile, 'w') as f:
+    #    f.write(sml)
     # Diagnóstico errores (residuos) de las predicciones de entrenamiento
     # ==============================================================================
     y_train = y_train.flatten()
     prediccion_train = modelo.predict(exog = X_train)
     residuos_train   = prediccion_train - y_train
-    # Normalidad de los residuos Shapiro-Wilk test
-    # ==============================================================================
-    shapiro_test = stats.shapiro(residuos_train)
-    shapiro_test
-    # Normalidad de los residuos D'Agostino's K-squared test
-    # ==============================================================================
-    k2, p_value = stats.normaltest(residuos_train)
-    print(f"Estadítico= {k2}, p-value = {p_value}")
     # Predicciones con intervalo de confianza 
     # ==============================================================================
     predicciones = modelo.get_prediction(exog = X_train).summary_frame(alpha=0.05)
@@ -119,5 +111,5 @@ def rlm(datarlm, spoke_labels, contaminante, exclude_p):
     pval = vmin + vmax
     pe = (rmse*100)/pval
     print(f"El error (rmse) de test es: {rmse}")
-    print(f"El porcentaje de error de test es: {pe}")
+    #print(f"El porcentaje de error de test es: {pe}")
     
