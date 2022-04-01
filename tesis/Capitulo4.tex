@@ -1,7 +1,6 @@
 \chapter{Solución propuesta}
 
 En el presente capítulo se presenta la propuesta de diseño de la solución para el problema de investigación abordado en el presente trabajo, así como su implementación.
-% Habiendo conocido las características que mejor describen a los atributos del presente trabajo, se puede decir que la base del método propuesto se puede desarrollar.
 
 \section{Diseño de la solución propuesta} \label{Diseño de la solución propuesta}
 En diseño de la solución propuesta se plantean las herramientas utilizadas y los pasos seguidos para la solución propuestas.
@@ -16,6 +15,8 @@ Las herramientas utilizadas en la presente investigación se muestran en el cuad
 			Herramienta & Versión & URL\\
 			\hline
 			\texttt{Python} & 3.8.8 & \url{https://www.python.org/}\\
+			\hline
+			\texttt{Jupyter Notebook} & 6.3.0 & \url{https://jupyter.org/}\\
 			\hline
 			\texttt{Imageio} & 2.9.0 & \url{https://imageio.readthedocs.io/}\\
 			\hline
@@ -69,7 +70,7 @@ Para la selección y agrupación de datos se sigue el procedimiento mostrado en 
 Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en \texttt{Python} \ref{tab:Herramientas utilizadas} que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
 
 \subsubsection{Series de tiempo}
-Se realizan series de tiempo en Python con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn} \ref{tab:Herramientas utilizadas}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. %; en la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
+Se realizan series de tiempo en \texttt{Python} con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn} \ref{tab:Herramientas utilizadas}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. %; en la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
 
 %\begin{figure}[h!]
 %\setcounter{figure}{0} % por culpa de sciposter
@@ -85,10 +86,10 @@ Se realizan series de tiempo en Python con ayuda de la librería  \texttt{Matplo
 Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib} \ref{tab:Herramientas utilizadas}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
 
 \begin{figure}[h!]
-\setcounter{figure}{1} % por culpa de sciposter
+\setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{spiderweb_PM10_2018_1.eps}
+   \includegraphics[trim=0 0 0 74,clip,width=1\textwidth]{spiderweb_PM10_2018_1.eps}
    \end{center}
     \caption[Ejemplo de gráfico de radar]{Nivel del contaminante PM10 y egresos por CIE en la semana 1 del año 2018.}
     \label{grafico_de_telaraña}
@@ -105,18 +106,45 @@ Primeramente se calcula el coeficiente de correlación de Pearson, si el valor d
 En los modelos de regresión lineal múltiple se tiene más de una variable independiente. Al obtener el valor de la correlación entre -1 y 1 para verificar que existe sustento para el modelo de regresión lineal, se procede a generar el modelo de regresión lineal múltiple. El modelo de regresión lineal múltiple arroja un valor de $R^2$ que indica en que grado las variables independientes explican la varianza de la variable dependiente. Además, se obtiene el valor $p$ que indica la relevancia del resultado y se obtiene la raíz de error cuadrático medio (RMSE) que indica cuantas unidades se alejan los valores predichos por el modelo de los valores reales, eso ayuda a determinar el error del modelo.
 
 \section{Implementación de la solución propuesta}
-% Recapitulando las fases anteriores, se conoce que...
-En implementación de la solución propuesta se muestra el desarrollo realizado de los puntos planteados en \ref{Diseño de la solución propuesta}. El desarrollo del presente proyecto se encuentra en el siguiente repositorio Github: \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/}.
+En implementación de la solución propuesta se muestra el desarrollo realizado de los puntos planteados en la sección \ref{Diseño de la solución propuesta}. La figura \ref{Diagrama de flujo de las fases} muestra las fases seguidas para el desarrollo de la solución propuesta, la cual consiste en la generación de visualizaciones y modelos. El desarrollo del presente proyecto se encuentra en el siguiente repositorio Github: \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/}.
 
 \begin{description}
-\item{En la función \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas.}
+\item{En el fragmento de código \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas, esto para que los datos puedan ser utilizados para generar figuras y modelos de regresión lineal.}
 \item{El fragmento de código \ref{lst:c2} muestra como es que se generan las series de tiempo, esto después de haber procesado y agrupado los datos.}
-\item{La función mostrada en \ref{lst:c3} genera gráficos de radar al ingresarle como parámetros los datos ya procesados y agrupados.}
-\item{En el fragmento de código \ref{lst:c4} se muestra como son generados los modelos de regresión lineal después de haber procesado y agrupado los datos.}
+\item{El fragmento de código mostrado en \ref{lst:c3} genera una animación de gráficos de radar al ingresarle como parámetros los datos ya procesados y agrupados. Dicha animación es generada en formato .mp4 o .gif para poder visualizar la evolución de las variables por semana del año y contaminante.}
+\item{En el fragmento de código \ref{lst:c4} se muestra como son generados los modelos de regresión lineal después de obtener un coeficiente de correlación de Pearson entre -1 y 1.}
+\item{El fragmento de código \ref{lst:c5} muestra como se generan los modelos de regresión lineal múltiple después de generar los modelos de regresión lineal individuales. Todos los modelos generados por librería \texttt{Statsmodels} \ref{tab:Herramientas utilizadas} se guardan en formato .tex.}
 \end{description}
 
-\clearpage
+\begin{figure}[H]
+  \resizebox{.75\columnwidth}{!}{
+  \begin{tikzpicture}[node distance=2cm, auto]
+ \node [cloud] (init) {Inicio};
+ \node [block, below of=init] (agrupamiento) {Agrupamiento de datos en semanas epidemiológicas};
+ \node [block, below of=agrupamiento] (series) {Generación de las series de tiempo};
+ \node [block, below of=series] (spiderweb) {Generación del gráfico de radar};
+ \node [block, below of=spiderweb] (correlacion) {Cálculo de la dependencia lineal $\rho$};
+ \node [decision, below of=correlacion] (decision1) {$\rho \in [-1,1]$};
+ \node [block, left of=decision1, node distance=6cm] (cancell) {Registrar el valor de la correlación};
+ \node [block, below of=decision1, node distance=4cm] (rl) {Generación del modelo de regresión lineal};  
+ \node [block, below of=rl] (rlm) {Generación del modelo de regresión lineal múltiple};
+ \node [cloud, below of=rlm, node distance=2cm] (end) {Fin};
+ \path [line] (init) -- (agrupamiento);
+ \path [line] (agrupamiento) -- (series);
+ \path [line] (series) -- (spiderweb);
+ \path [line] (spiderweb) -- (correlacion);
+ \path [line] (correlacion) -- (decision1);
+ \path [line] (decision1) -- node {no} (cancell);
+ \path [line] (cancell) |- (end);
+ \path [line] (decision1) -- node {sí} (rl);
+ \path [line] (rl) -- (rlm);
+ \path [line] (rlm) -- (end);
+\end{tikzpicture}}
+\caption{Fases del desarrollo de la solución}
+\label{Diagrama de flujo de las fases}
+\end{figure}
 
+\clearpage
 \begin{lstlisting}[language=Python, caption=Procesamiento y agrupamiento de datos, label=lst:c1]
 import pandas as pd
 from epiweeks import Week, date
@@ -163,6 +191,7 @@ for i in range (n):
     dataframesca[contaminante][i] = promediocas
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[language=Python, caption=Generación de series de tiempo, label=lst:c2]
 import pandas as pd
 from epiweeks import Week, date
@@ -220,63 +249,67 @@ for name in diagnosticosaño.index:
     cont = cont+1
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[language=Python, caption=Generación de graficos de radar, label=lst:c3]
-def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_labels, colors, typeframe):
+def create_spiderwebs(datasets, labels, lenlines, title, titles, spoke_labels, colors, typeframe, outputtype):
 
-    # Set the number of lines of each spiderweb
-    N = len(datasets)
+    N1 = len(datasets)
+    N2 = len(labels)
+    N = int(N1/N2)
     theta = radar_factory(N, frame=typeframe)
-    # Set the number of columns and rows
-    if (numspiders%2==0):
-        numrows = 2
-        numcols = int(numspiders/2)
-    else:
-        numrows = 1
-        numcols = numspiders
-        
-    # Draw the shape of the spiderweb
-    fig, axs = plt.subplots(figsize=(8, 8), nrows=numrows, ncols=numcols, subplot_kw=dict(projection='radar'))
-    fig.subplots_adjust(wspace=0.5, hspace=0.20, top=0.85, bottom=0.05)
-    newn = 0.5
-    rgrids = []
-    for z in range(lenlines*2):
-        rgrids.append(newn)
-        newn = newn + 0.5
-
-    # Counter of the number of spiders
     i=0
-
-    # Plot each case on separate axes
-    for ax, (titlespiderweb) in zip(axs.flat, titles):
-        # Put labels in the lines
-        ax.set_rgrids(rgrids)        
-        ax.set_title(titlespiderweb, weight='bold', size='medium', position=(0.5, 1.1))
-        dataspider = []
-        # Normalize data
-        for y in range(N):
-            currentdata = datasets[y]
-            number = currentdata[i]
-            nmin = min(currentdata);
-            nmax = max(currentdata);
-            r = nmax - nmin
-            x = (number-nmin)/r
-            y = lenlines*x
-            dataspider.append(y)
-        # Draw the new lines in the spiderweb
-        ax.plot(theta, dataspider, color=colors[i])
-        ax.fill(theta, dataspider, facecolor=colors[i], alpha=0.25)
-        # Put the name of each line in the figure
+    filenames = []
+    for titlespiderweb in titles:
+        fig, axs = plt.subplots(figsize=(8, 8), subplot_kw=dict(projection='radar'))
+        fig.subplots_adjust(wspace=0.5, hspace=0.20, top=0.85, bottom=0.05)
+        ax = axs
+        ax.set_title(titlespiderweb, weight='bold', size='medium', position=(0.5, 0.5), horizontalalignment='center', verticalalignment='center', fontsize=16)
+        for y in range(N2):
+            dataspider = []
+            xx = y
+            for yy in range(N):
+                currentdata = datasets[xx]
+                number = currentdata[i]
+                nmin = min(currentdata);
+                nmax = max(currentdata);
+                r = nmax - nmin
+                x = (number-nmin)/r
+                yyy = lenlines*x
+                dataspider.append(yyy)
+                xx = xx + N2
+            ax.plot(theta, dataspider, color=colors[y])
+            ax.fill(theta, dataspider, facecolor=colors[y], alpha=0.05)
         ax.set_varlabels(spoke_labels)
-        # Increment the counter
+        ax = axs
+        legend = ax.legend(labels, loc=(0.9, .95), labelspacing=0.1, fontsize='small')
         i=i+1
-    # Show the figure
-    plt.show()
+        filename = 'spiderweb' + '_' + title + '_' + str(i) + '.jpg'
+        filenames.append(filename)
+        plt.savefig(filename, format='jpg')
+    
+    # Generate a GIF
+    if(outputtype == 'gif'):
+        with imageio.get_writer(title + '.gif', mode='I', duration=1) as writer:
+            for filename in filenames:
+                image = imageio.imread(filename)
+                writer.append_data(image)
+    # Generate a .mp4 video
+    if(outputtype == 'video'):
+        img_array = []
+        for filename in filenames:
+            img = cv2.imread(filename)
+            height, width, layers = img.shape
+            size = (width,height)
+            img_array.append(img)        
+        out = cv2.VideoWriter(title + '.mp4',cv2.VideoWriter_fourcc(*'MP4V'), 1, size)
+        for i in range(len(img_array)):
+            out.write(img_array[i])
+        out.release()
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal, label=lst:c4]
-datos = pd.DataFrame(dataframegacc, columns=col_names)
 # Gráfico
-# ==============================================================================
 fig, ax = plt.subplots(figsize=(6, 3.84))
 datos.plot(
     x    = col_names[0],
@@ -286,31 +319,110 @@ datos.plot(
     ax   = ax
 )
 ax.set_title('Contaminante ' + col_names[0] + ' & CIE ' + col_names[1])
-
 # Correlación lineal entre las dos variables
-# ==============================================================================
-corr_test = pearsonr(x = datos[col_names[0]].fillna(0), y =  datos[col_names[1]].fillna(0))
-print("Coeficiente de correlación de Pearson: ", corr_test[0])
-print("P-value: ", corr_test[1])
-
+corr_test = pearsonr(x = datos[col_names[0]], y =  datos[col_names[1]])
 # División de los datos en train y test
-# ==============================================================================
-xx = datos[[col_names[0]]].fillna(0)
-yy = datos[[col_names[1]]].fillna(0)
-        
-x2 = xx.values.tolist()
-y2 = yy.values.tolist()
-
-# Creación del modelo utilizando matrices como en scikitlearn
-# ==============================================================================
-# A la matriz de predictores se le tiene que añadir una columna de 1s para el intercept del modelo
-x = np.array(x2).astype(float)
-y = np.array(y2).astype(float)
-#ones = np.ones(len(x[0]))
-#X = sm.add_constant(np.column_stack((x[0], ones)))
-#for ele in x[1:]:
-#    X = sm.add_constant(np.column_stack((ele, X)))
-modelo = sm.OLS(y, x)
+X = datos[[col_names[0]]]
+y = datos[col_names[1]]
+X_train, X_test, y_train, y_test = train_test_split(
+    X.values.reshape(-1,1),
+    y.values.reshape(-1,1),
+    train_size   = 0.8,
+    random_state = 1234,
+    shuffle      = True
+)
+X_train = sm.add_constant(X_train, prepend=True)
+modelo = sm.OLS(endog=y_train, exog=X_train)
 modelo = modelo.fit()
-print(modelo.summary())
+if(modelo.pvalues[1]>0.05):
+    exclude_p.append(col_names[1])
+# Intervalos de confianza para los coeficientes del modelo
+modelo.conf_int(alpha=0.05)
+# Predicciones con intervalo de confianza del 95%
+pred = modelo.get_prediction(exog = X_train).summary_frame(alpha=0.05)
+pred.head(4)        
+# Predicciones con intervalo de confianza del 95%
+pred = modelo.get_prediction(exog = X_train).summary_frame(alpha=0.05)
+pred['x'] = X_train[:, 1]
+pred['y'] = y_train
+pred = pred.sort_values('x')
+# Gráfico del modelo
+fig, ax = plt.subplots(figsize=(6, 3.84))
+ax.set_title('Contaminante ' + col_names[0] + ' & CIE ' + col_names[1])
+ax.set_xlabel(col_names[0])
+ax.set_ylabel(col_names[1])
+ax.scatter(pred['x'], pred['y'], marker='o', color = "gray")
+ax.plot(pred['x'], pred["mean"], linestyle='-', label="OLS")
+ax.plot(pred['x'], pred["mean_ci_lower"], linestyle='--', color='red')
+ax.plot(pred['x'], pred["mean_ci_upper"], linestyle='--', color='red')
+ax.fill_between(pred['x'], pred["mean_ci_lower"], pred["mean_ci_upper"], 0.1)
+ax.legend()
+# Error de test del modelo 
+X_test = sm.add_constant(X_test, prepend=True)
+pred = modelo.predict(exog = X_test)
+rmse = mean_squared_error(
+    y_true  = y_test,
+    y_pred  = pred,
+    squared = False
+)
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal múltiple, label=lst:c5]
+corr_matrix = datarlm.corr(method='pearson')
+corr_mat = corr_matrix.stack().reset_index()
+corr_mat.columns = ['variable_1','variable_2','r']
+corr_mat = corr_mat.loc[corr_mat['variable_1'] != corr_mat['variable_2'], :]
+corr_mat['abs_r'] = np.abs(corr_mat['r'])
+corr_mat = corr_mat.sort_values('abs_r', ascending=False)
+tidy_corr_matrix = (corr_matrix).head(10)
+# Heatmap matriz de correlaciones
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(4, 4))
+sns.heatmap(
+    corr_matrix,
+    annot     = True,
+    cbar      = False,
+    annot_kws = {"size": 8},
+    vmin      = -1,
+    vmax      = 1,
+    center    = 0,
+    cmap      = sns.diverging_palette(20, 220, n=200),
+    square    = True,
+    ax        = ax)
+ax.set_xticklabels(
+    ax.get_xticklabels(),
+    rotation = 45,
+    horizontalalignment = 'right',)
+ax.tick_params(labelsize = 10)
+# División de los datos en train y test
+X = datarlm[spoke_labels]
+y = datarlm[contaminante]
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y.values.reshape(-1,1),
+    train_size   = 0.8,
+    random_state = 1234,
+    shuffle      = True)
+# Creación del modelo utilizando matrices como en scikitlearn
+X_train = sm.add_constant(X_train, prepend=True)
+modelo = sm.OLS(endog=y_train, exog=X_train,)
+modelo = modelo.fit()
+sml = modelo.summary().as_latex()
+namefile = 'modelos_latex/' + 'regresion_lineal_multiple_' + contaminante + '_' + año + '.tex'
+f = open(namefile, 'w')
+with open(namefile, 'w') as f:
+    f.write(sml)
+# Diagnóstico errores (residuos) de las predicciones de entrenamiento
+y_train = y_train.flatten()
+prediccion_train = modelo.predict(exog = X_train)
+residuos_train   = prediccion_train - y_train
+# Predicciones con intervalo de confianza 
+predicciones = modelo.get_prediction(exog = X_train).summary_frame(alpha=0.05)
+predicciones.head(4)
+# Error de test del modelo 
+X_test = sm.add_constant(X_test, prepend=True)
+rmse = mean_squared_error(
+    y_true  = y_test,
+    y_pred  = modelo.predict(exog = X_test),
+    squared = False)
 \end{lstlisting}

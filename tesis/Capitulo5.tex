@@ -12,7 +12,7 @@ Los datos de egresos hospitalarios de los años 2017 y 2018 provienen de la base
 
 \begin{description}
 \item [Selección de datos.] {Los conjuntos de datos por año de egresos hospitalarios contienen información de todos los estados de México, por lo cual se hace una limpieza de datos para solo obtener los registros de Nuevo León ya que de dicha entidad es de la cual se tienen los datos de contaminación.}
-\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE \citep{r9} se obtiene el numero de egresos en cada semana del año.}
+\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE se obtiene el numero de egresos en cada semana del año.}
 \item [Datos de los contaminantes.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Se obtiene el promedio del nivel del contaminante por cada semana del año.}
 \end{description}
 
@@ -20,16 +20,16 @@ Los datos de egresos hospitalarios de los años 2017 y 2018 provienen de la base
 Con los datos ya seleccionados y agrupados se procede a generar las visualizaciones de los datos. Las visualizaciones de los datos se hacen con series de tiempo y gráficos de radar.
 
 \begin{description}
-\item [Series de tiempo.] {Se procede a generar series de tiempo de cada año por contaminante y CIE \citep{r9}}. Las variables ajustables son:
+\item [Series de tiempo.] {Se procede a generar series de tiempo de cada año por contaminante y CIE}. Las variables ajustables son:
 \begin{itemize}
 	\item El nombre del contaminante.
 	\item El año del que se quieren obtener las series de tiempo.
-	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor numero de egresos.
 \end{itemize}
 
-\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un numero entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIE \citep{r9}}. Las variables ajustables son:
+\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un numero entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIE}. Las variables ajustables son:
 \begin{itemize}
-    \item Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+    \item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor numero de egresos.
 	\item Valor máximo que se utiliza para representar la longitud de los ejes en el gráfico.
 	\item Nombre de la figura.
 	\item Nombre de cada eje en el gráfico.
@@ -45,7 +45,7 @@ Se procede a generar los modelos. En cada modelo se tienen métricas para evalua
 Se tienen algunas variables que pueden ser modificadas para la generación de los modelos de regresión lineal.
 
 \begin{itemize}
-	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE \citep{r9} con mayor numero de egresos.
+	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor numero de egresos.
 	\item Porcentaje de datos utilizados para el entrenamiento del modelo.
 	\item Nivel de significancia.
 \end{itemize}
@@ -68,7 +68,7 @@ Establecidos las especificaciones de los experimentos que se realizan, se report
 Se estudian los niveles del contaminante PM10 de los años 2017 y 2018. 
 
 \subsubsection{Año 2017}
-En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año. 
+En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año. 
 
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
@@ -76,7 +76,7 @@ En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tie
 \begin{center}
    \includegraphics[width=1\textwidth]{PM10_O809_2017.eps}
    \end{center}
-    \caption[Series de tiempo 2017 PM10 Y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
+    \caption[Series de tiempo 2017 PM10 y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
     \label{serie_de_tiempo_2017_PM10}
 \end{figure}
 
@@ -117,13 +117,13 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultado
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Variable Dep.:}    &        y         & \textbf{  R$^2$:         } &     0.313   \\
+\textbf{Variable Dep.:}    &        $y$         & \textbf{  R$^2$:         } &     0.313   \\
 \textbf{Modelo:}            &       OLS        & \textbf{Método:}           &  Mínimos cuadrados  \\
-\textbf{Error:}            & 0.254  \\
+\textbf{Error:}            & 0.226  \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lcccccc}
-               & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+               & \textbf{coef} & \textbf{std err} & \textbf{$t$} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
 \textbf{const} &       0.5859  &        0.146     &     4.002  &         0.000        &        0.289    &        0.883     \\
 \textbf{O809}  &      -0.3019  &        0.122     &    -2.472  &         0.018        &       -0.550    &       -0.054     \\
@@ -138,7 +138,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultado
 
 \clearpage
 \subsubsection{Año 2018}
-En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año.
+En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año.
 
 \begin{figure}[h!]
 \setcounter{figure}{1} % por culpa de sciposter
@@ -146,7 +146,7 @@ En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tie
 \begin{center}
    \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
    \end{center}
-    \caption[Series de tiempo 2018 PM10 Y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
+    \caption[Series de tiempo 2018 PM10 y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo_2018_PM10}
 \end{figure}
 
@@ -187,13 +187,13 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultado
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Variable Dep.:}    &        y         & \textbf{  R$^2$:         } &     0.182   \\
+\textbf{Variable Dep.:}    &        $y$         & \textbf{  R$^2$:         } &     0.182   \\
 \textbf{Modelo:}            &       OLS        & \textbf{Método:}           &  Mínimos cuadrados  \\
-\textbf{Error:}            & 0.157  \\
+\textbf{Error:}            & 0.159  \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lcccccc}
-               & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+               & \textbf{coef} & \textbf{std err} & \textbf{$t$} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
 \textbf{const} &       0.3885  &        0.210     &     1.849  &         0.073        &       -0.038    &        0.815     \\
 \textbf{O809}  &      -0.0114  &        0.188     &    -0.061  &         0.952        &       -0.392    &        0.370     \\
@@ -212,7 +212,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultado
 Se estudian los niveles del contaminante PM2.5 de los años 2017 y 2018.
 
 \subsubsection{Año 2017}
-En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año.
+En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año.
 
 \begin{figure}[h!]
 \setcounter{figure}{2} % por culpa de sciposter
@@ -220,7 +220,7 @@ En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tie
 \begin{center}
    \includegraphics[width=1\textwidth]{PM2_5_O809_2017.eps}
    \end{center}
-    \caption[Series de tiempo 2017 PM2.5 Y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
+    \caption[Series de tiempo 2017 PM2.5 y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
     \label{serie_de_tiempo_2017_PM25}
 \end{figure}
 
@@ -261,13 +261,13 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultad
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Variable Dep.:}    &        y         & \textbf{  R$^2$:         } &     0.210   \\
+\textbf{Variable Dep.:}    &        $y$         & \textbf{  R$^2$:         } &     0.210   \\
 \textbf{Modelo:}            &       OLS        & \textbf{Método:}           &  Mínimos cuadrados   \\
-\textbf{Error:}            & 0.173  \\
+\textbf{Error:}            & 0.175  \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lcccccc}
-               & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+               & \textbf{coef} & \textbf{std err} & \textbf{$t$} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
 \textbf{const} &       0.5345  &        0.158     &     3.373  &         0.002        &        0.213    &        0.856     \\
 \textbf{O809}  &      -0.1754  &        0.132     &    -1.327  &         0.193        &       -0.444    &        0.093     \\
@@ -281,7 +281,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultad
 \end{table}
 
 \subsubsection{Año 2018}
-En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tiempo generadas para la CIE \citep{r9} con mayor numero de egresos registrados en el conjunto de datos del año.
+En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año.
 
 \begin{figure}[h!]
 \setcounter{figure}{3} % por culpa de sciposter
@@ -289,7 +289,7 @@ En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tie
 \begin{center}
    \includegraphics[width=1\textwidth]{PM2_5_O809_2018.eps}
    \end{center}
-    \caption[Series de tiempo 2018 PM2.5 Y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
+    \caption[Series de tiempo 2018 PM2.5 y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo_2018_PM25}
 \end{figure}
 
@@ -330,13 +330,13 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultad
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Variable Dep.:}    &        y         & \textbf{  R$^2$:         } &     0.259   \\
+\textbf{Variable Dep.:}    &        $y$         & \textbf{  R$^2$:         } &     0.259   \\
 \textbf{Modelo:}            &       OLS        & \textbf{Método:}           &  Mínimos cuadrados   \\
-\textbf{Error:}            & 0.206  \\
+\textbf{Error:}            & 0.174  \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lcccccc}
-               & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+               & \textbf{coef} & \textbf{std err} & \textbf{$t$} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
 \textbf{const} &       0.7042  &        0.193     &     3.652  &         0.001        &        0.313    &        1.096     \\
 \textbf{O809}  &      -0.0863  &        0.172     &    -0.501  &         0.620        &       -0.436    &        0.264     \\
@@ -354,14 +354,15 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultad
 \section{Discusión}
 Como se puede observar, en todos los experimentos se obtiene una correlación entre -1 y 1, lo cual indica que existe una correlación lineal entre los contaminantes estudiados y las CIE estudiadas.
 
-En el Experimento A el error RMSE en los modelos de regresión lineal varia entre 0.152 y 0.294, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE \citep{r9} K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo. 
+En el Experimento A el error RMSE en los modelos de regresión lineal varia entre 0.152 y 0.294, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo. 
 El valor de $R^2$ más alto en el año 2017 se encuentra en la CIE O759 con un valor $p$ de 0.029, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM10 en el año 2017. En el año 2018 el valor de $R^2$ más alto se encuentra en la CIE O342 con un valor $p$ de 0.044, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM10 en el año 2018.
 
-En el Experimento B el error RMSE en los modelos de regresión lineal varia entre 0.159 y 0.278, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE \citep{r9} K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo.
+En el Experimento B el error RMSE en los modelos de regresión lineal varia entre 0.159 y 0.278, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo.
 El valor de $R^2$ más alto en el año 2017 se encuentra en la CIE O759 con un valor $p$ de 0.032, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM2.5 en el año 2017. En el año 2018 el valor de $R^2$ más alto se encuentra en la CIE O342 con un valor $p$ de 0.013, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM2.5 en el año 2018.
 
 \clearpage
-Todos los experimentos son ejecutados en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
+Todos los experimentos son ejecutados en \texttt{Jupyter Notebook} \ref{tab:Herramientas utilizadas} en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
+
 \begin{table}[H]
 	{\centering
 		\caption{Especificaciones técnicas del equipo de cómputo}
