@@ -6,7 +6,7 @@ analizar las relaciones entre los niveles de determinados contaminantes y determ
 - [tesis][LiThe]: Contiene los archivos LaTeX.
 - [programas][LiDesign]: Contiene los programas codificados en Python utilizados para generar los experimentos.
 - [Jupyter][LiGame]: Contiene las libretas Jupyter en las que se elaboraron los experimentos.
-- [Jupyter][Lifiguras]: Contiene las figuras obtenidas de los experimentos.
+- [figuras][Lifiguras]: Contiene las figuras obtenidas de los experimentos.
 
 [LiThe]: <https://github.com/selenebpradop/relaciones-contaminantes-salud/tree/main/tesis>
 [LiDesign]: <https://github.com/selenebpradop/relaciones-contaminantes-salud/tree/main/programas>
