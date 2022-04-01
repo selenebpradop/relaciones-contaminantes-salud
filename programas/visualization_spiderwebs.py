@@ -7,10 +7,6 @@ from matplotlib.projections.polar import PolarAxes
 from matplotlib.projections import register_projection
 from matplotlib.spines import Spine
 from matplotlib.transforms import Affine2D
-import math
-import cv2
-import imageio
-import os
 
 
 def radar_factory(num_vars, frame='circle'):
@@ -94,7 +90,7 @@ def radar_factory(num_vars, frame='circle'):
 
 
 
-def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_labels, colors, typeframe, outputtype):
+def create_spiderwebs(datasets, lenlines, title, spoke_labels, colors, typeframe):
 
     """
     Create a radar chart.
@@ -107,8 +103,6 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
         A list that contains one list for each dataset.
     lenlines: int
         The length of the lines of the spiderweb.
-    numspiders: int
-        The number of spiderwebs to create.
     title: String
         The title of the figure.
     titles: list
@@ -132,23 +126,11 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
     elif not(isinstance(lenlines, int)):
         print('Please enter a valid integer number for the length of the lines of the spiderwebs.')
         allvalid = False
-    elif(lenlines<=0 or lenlines>50):
+    elif(lenlines<=0 or lenlines>150):
         print('Please enter a valid integer number for the length of the lines of the spider (Greater than 0 and less than 50).')
-        allvalid = False
-    elif not (isinstance(numspiders, int)):
-        print('Please enter a valid integer number for the number of spiderwebs to create.')
-        allvalid = False
-    elif(numspiders<=0 or numspiders>50):
-        print('Please enter a valid integer number for the number of spiderwebs to create (Greater than 0 and less than 50).')
         allvalid = False
     elif not (isinstance(title, str)):
         print('Please enter a valid string for the title of the figure.')
-        allvalid = False
-    elif not (isinstance(titles, list)):
-        print('Please enter a valid list with the name of each spiderweb. Now is: ' + str(type(titles)))
-        allvalid = False
-    elif (len(titles)!=numspiders):
-        print('Please enter a valid list with the name of each spiderweb. Now number of spiderwebs is different of the quantity of names.')
         allvalid = False
     elif not (isinstance(spoke_labels, list)):
         print('Please enter a valid list with the name of each line in the spiderweb. Now is: ' + str(type(spoke_labels)))
@@ -159,9 +141,6 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
     elif not (isinstance(colors, list)):
         print("Please enter a valid list with the first letter of the color of each spiderweb [{'b', 'r', 'g', 'm', 'y'}]")
         allvalid = False
-    elif (len(colors)!=numspiders):
-        print("Please enter a valid list with the first letter of the color of each spiderweb [{'b', 'r', 'g', 'm', 'y'}]. Now number of spiderwebs is different of the quantity of colors.")
-        allvalid = False
     else:
         for vcolor in colors:
             if not(vcolor=='b' or vcolor=='r' or vcolor=='g' or vcolor=='m' or vcolor=='y'):
@@ -170,9 +149,7 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
         if(typeframe!='circle' and typeframe!='polygon'):
             print("Please enter a valid string with the name of the type of the Frame for the spiderwebs. {'circle', 'polygon'}")
             allvalid = False
-        elif(outputtype!='video' and outputtype!='gif'):
-            print("Please enter a valid string with the name of the type of file to generate. {'gif', 'video'}")
-            allvalid = False
+    
 
 
     if(allvalid):
@@ -183,66 +160,42 @@ def create_spiderwebs(datasets, lenlines, numspiders, title, titles, spoke_label
 
         # Counter of the number of spiders
         i=0
-        filenames = []
-    
+
+        # Draw the shape of the spiderweb
+        fig, axs = plt.subplots(figsize=(8, 8), subplot_kw=dict(projection='radar'))
+        fig.subplots_adjust(wspace=0.5, hspace=0.20, top=0.85, bottom=0.05)
+        newn = 0.5
+        ax = axs
+        # Put labels in the lines
+        ax.set_title(title, weight='bold', size='medium', position=(0.5, 1.1), horizontalalignment='center', verticalalignment='center', fontsize=16)
+            
         # Plot each case on separate axes
-        for titlespiderweb in titles:
-            # Draw the shape of the spiderweb
-            fig, axs = plt.subplots(figsize=(8, 8), subplot_kw=dict(projection='radar'))
-            fig.subplots_adjust(wspace=0.5, hspace=0.20, top=0.85, bottom=0.05)
-            newn = 0.5
-            ax = axs
-            # Put labels in the lines
-            ax.set_title(titlespiderweb, weight='bold', size='medium', position=(0.5, 1.1), horizontalalignment='center', verticalalignment='center')
+        for titlespiderweb in spoke_labels:
             dataspider = []
             # Normalize data
             for y in range(N):
                 currentdata = datasets[y]
                 number = currentdata[i]
-                nmin = min(currentdata);
-                nmax = max(currentdata);
+                nmin = min(min(datasets));
+                nmax = max(max(datasets));
                 r = nmax - nmin
                 x = (number-nmin)/r
                 y = lenlines*x
                 dataspider.append(y)
-            # Draw the new lines in the spiderweb
+                # Draw the new lines in the spiderweb
             ax.plot(theta, dataspider, color=colors[i])
-            ax.fill(theta, dataspider, facecolor=colors[i], alpha=0.25)
-            # Put the name of each line in the figure
-            ax.set_varlabels(spoke_labels)
+            ax.fill(theta, dataspider, facecolor=colors[i], alpha=0.05)
             # Increment the counter
             i=i+1
 
-            # Name of the image
-            filename = title + str(i) + '.png'
-            filenames.append(filename)
-            # Save the figure in an image with .png format
-            plt.savefig(filename, format='png')
-            # Show the figure
-            plt.close()
-
-    
-        # Generate a GIF
-        if(outputtype == 'gif'):
-            with imageio.get_writer(title + '.gif', mode='I', duration=1) as writer:
-                # Generates a GIF using the filenames stores previusly
-                for filename in filenames:
-                    image = imageio.imread(filename)
-                    writer.append_data(image)
-
-        # Generate a .mp4 video
-        if(outputtype == 'video'):
-            img_array = []
-            for filename in filenames:
-                img = cv2.imread(filename)
-                height, width, layers = img.shape
-                size = (width,height)
-                img_array.append(img)        
-            out = cv2.VideoWriter(title + '.mp4',cv2.VideoWriter_fourcc(*'MP4V'), 1, size)
-            for i in range(len(img_array)):
-                out.write(img_array[i])
-            out.release()
-
-        # Removes the PNG images tfrom the system
-        for filename in set(filenames):
-            os.remove(filename)
+        # Put the name of each line in the figure
+        ax.set_varlabels(spoke_labels)
+        # Name of the image
+        filename = 'spiderweb' + '_' + title
+        # Save the figure in an image with .png format
+        plt.savefig(filename + '.jpg', format='jpg')
+        # Save an example image in .eps
+        plt.savefig(filename + '.eps', format='eps')
+        # Show the figure
+        plt.show()
+        plt.close()
