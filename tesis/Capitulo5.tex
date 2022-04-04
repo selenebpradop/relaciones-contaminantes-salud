@@ -29,23 +29,22 @@ Con los datos ya seleccionados y agrupados se procede a generar las visualizacio
 
 \item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un número entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIE}. Las variables ajustables son:
 \begin{itemize}
-    \item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor número de egresos.
+    \item Cantidad de CIE a agregar en el gráfico. Se parte de la CIE con mayor número de egresos.
 	\item Valor máximo que se utiliza para representar la longitud de los ejes en el gráfico.
 	\item Nombre de la figura.
 	\item Nombre de cada eje en el gráfico.
 	\item Los colores de cada eje en el gráfico. 
-	\item Si el spiderweb es generado de forma circular o en forma de polígono.
+	\item Si el gráfico es generado de forma circular o en forma de polígono.
 \end{itemize}
 \end{description}
 
 \subsection{Generación de modelos}
 Se procede a generar los modelos. En cada modelo se tienen métricas para evaluar su eficacia y valores que pueden ser ajustados en función de encontrar la combinación que proporcione mejores resultados.
 
-\subsubsection{Regresión lineal}
 Se tienen algunas variables que pueden ser modificadas para la generación de los modelos de regresión lineal.
 
 \begin{itemize}
-	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor número de egresos.
+	\item Cantidad de CIE a agregar en el modelo. Se parte de la CIE con mayor número de egresos.
 	\item Porcentaje de datos utilizados para el entrenamiento del modelo.
 	\item Nivel de significancia.
 \end{itemize}
@@ -68,7 +67,7 @@ Establecidas las especificaciones de los experimentos que se realizan, se report
 Se estudian los niveles del contaminante PM10 de los años 2017 y 2018. 
 
 \subsubsection{Año 2017}
-En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2017} muestra los resultados del modelo de regresión lineal múltiple.
+En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2017} muestra los resultados del modelo de regresión lineal múltiple. En la figura \ref{correlaciones_2017_PM10} se muestran las correlaciones obtenidas en un gráfico de radar.
 
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
@@ -109,6 +108,16 @@ En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tie
 \end{threeparttable}
 \end{table}
 
+\begin{figure}[h!]
+\setcounter{figure}{1} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[trim=0 0 0 23,clip,width=1\textwidth]{spiderweb_correlaciones_PM10_2017}
+   \end{center}
+    \caption[Correlaciones 2017 PM10]{Correlaciones entre los niveles de PM10 y CIE en el 2017 donde el azul indica una correlación positiva y el rojo una correlación negativa.}
+    \label{correlaciones_2017_PM10}
+\end{figure}
+
 \begin{table}[hbt!]
 \caption{Resultados regresión lineal múltiple PM10 2017}
 \label{tab:RRLM PM10 2017}
@@ -136,10 +145,10 @@ En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tie
 
 \clearpage
 \subsubsection{Año 2018}
-En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2018} muestra los resultados del modelo de regresión lineal múltiple.
+En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2018} muestra los resultados del modelo de regresión lineal múltiple. En la figura \ref{correlaciones_2018_PM10} se muestran las correlaciones obtenidas en un gráfico de radar.
 
 \begin{figure}[h!]
-\setcounter{figure}{1} % por culpa de sciposter
+\setcounter{figure}{2} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
    \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
@@ -177,6 +186,16 @@ En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tie
 \end{threeparttable}
 \end{table}
 
+\begin{figure}[h!]
+\setcounter{figure}{3} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[trim=0 0 0 23,clip,width=1\textwidth]{spiderweb_correlaciones_PM10_2018}
+   \end{center}
+    \caption[Correlaciones 2018 PM10]{Correlaciones entre los niveles de PM10 y CIE en el 2018 donde el azul indica una correlación positiva y el rojo una correlación negativa.}
+    \label{correlaciones_2018_PM10}
+\end{figure}
+
 \begin{table}[hbt!]
 \caption{Resultados regresión lineal múltiple PM10 2018}
 \label{tab:RRLM PM10 2018}
@@ -208,10 +227,10 @@ En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tie
 Se estudian los niveles del contaminante PM2.5 de los años 2017 y 2018.
 
 \subsubsection{Año 2017}
-En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2017} muestra los resultados del modelo de regresión lineal múltiple.
+En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2017} muestra los resultados del modelo de regresión lineal múltiple. En la figura \ref{correlaciones_2017_PM25} se muestran las correlaciones obtenidas en un gráfico de radar.
 
 \begin{figure}[h!]
-\setcounter{figure}{2} % por culpa de sciposter
+\setcounter{figure}{4} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
    \includegraphics[width=1\textwidth]{PM2_5_O809_2017.eps}
@@ -249,6 +268,16 @@ En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tie
 \end{threeparttable}
 \end{table}
 
+\begin{figure}[h!]
+\setcounter{figure}{5} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[trim=0 0 0 23,clip,width=1\textwidth]{spiderweb_correlaciones_PM2_5_2017}
+   \end{center}
+    \caption[Correlaciones 2017 PM2.5]{Correlaciones entre los niveles de PM2.5 y CIE en el 2017 donde el azul indica una correlación positiva y el rojo una correlación negativa.}
+    \label{correlaciones_2017_PM25}
+\end{figure}
+
 \begin{table}[hbt!]
 \caption{Resultados regresión lineal múltiple PM2.5 2017}
 \label{tab:RRLM PM2.5 2017}
@@ -276,10 +305,10 @@ En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tie
 
 \clearpage
 \subsubsection{Año 2018}
-En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2018} muestra los resultados del modelo de regresión lineal múltiple.
+En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2018} muestra los resultados del modelo de regresión lineal múltiple. En la figura \ref{correlaciones_2018_PM25} se muestran las correlaciones obtenidas en un gráfico de radar.
 
 \begin{figure}[h!]
-\setcounter{figure}{3} % por culpa de sciposter
+\setcounter{figure}{6} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
    \includegraphics[width=1\textwidth]{PM2_5_O809_2018.eps}
@@ -316,6 +345,16 @@ En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tie
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
+
+\begin{figure}[h!]
+\setcounter{figure}{7} % por culpa de sciposter
+\captionsetup{type=figure} % por culpa de sciposter
+\begin{center}
+   \includegraphics[trim=0 0 0 23,clip,width=1\textwidth]{spiderweb_correlaciones_PM2_5_2018}
+   \end{center}
+    \caption[Correlaciones 2018 PM2.5]{Correlaciones entre los niveles de PM2.5 y CIE en el 2018 donde el azul indica una correlación positiva y el rojo una correlación negativa.}
+    \label{correlaciones_2018_PM25}
+\end{figure}
 
 \begin{table}[hbt!]
 \caption{Resultados regresión lineal múltiple PM2.5 2018}
