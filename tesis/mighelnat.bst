@@ -381,7 +381,7 @@ FUNCTION {format.eprint}
 FUNCTION {format.url}
 { url empty$
     { "" }
-    { "\urlprefix\url{" url * "}" * }
+    { "\url{" url * "}" * }
   if$
 }
 
@@ -1619,7 +1619,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "  \providecommand{\doi}[1]{doi: #1}"
   write$ newline$
-  "  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}"
+  "  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\url}"
   write$ newline$
   "  \providecommand{\pmid}[1]{pmid: #1}"
   write$ newline$

@@ -1,6 +1,6 @@
 \chapter{Solución propuesta}
 
-En el presente capítulo se presenta la propuesta de diseño de la solución para el problema de investigación abordado en el presente trabajo, así como su implementación.
+En este capítulo se comparte la propuesta de diseño de la solución para el problema de investigación abordado en este presente trabajo, así como su implementación.
 
 \section{Diseño de la solución propuesta} \label{Diseño de la solución propuesta}
 En diseño de la solución propuesta se plantean las herramientas utilizadas y los pasos seguidos para la solución propuestas.
@@ -45,11 +45,11 @@ Las herramientas utilizadas en la presente investigación se muestran en el cuad
 \end{table}
 
 \subsection{Recolección de datos}
-La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más contaminantes del aire en años recientes y también del mismo lugar tener datos del número de egresos hospitalarios durante esos años.
+La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más contaminantes del aire en años recientes y también del mismo lugar contar con datos del número de egresos hospitalarios durante esos años.
 
 \subsection{Selección y agrupación de datos}
-Después de la recolección de datos se procede a seleccionar que datos van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} \ref{tab:Herramientas utilizadas} que permite la manipulación de datos. 
-Para la selección y agrupación de datos se sigue el procedimiento mostrado en la figura \ref{alg:a1}.
+Después de la recolección de datos se seleccionan cuáles van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} que permite la manipulación de datos. 
+Para la selección y agrupación de datos se sigue el procedimiento mostrado en el algoritmo \ref{alg:a1}.
 
 \begin{algorithm}
 \caption{Selección y agrupamiento de datos}\label{alg:a1}
@@ -67,10 +67,10 @@ Para la selección y agrupación de datos se sigue el procedimiento mostrado en 
 \end{algorithm}
 
 \subsection{Visualización de la evolución de las variables}
-Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en \texttt{Python} \ref{tab:Herramientas utilizadas} que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
+Al ya tener seleccionados los datos a utilizar se procede a elaborar gráficos en \texttt{Python} que muestran la evolución de las variables en el tiempo. Para ello se generan los tipos de gráficos discutidos a continuación.
 
 \subsubsection{Series de tiempo}
-Se realizan series de tiempo en \texttt{Python} con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn} \ref{tab:Herramientas utilizadas}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. %; en la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
+Se realizan series de tiempo en \texttt{Python} con ayuda de la librería  \texttt{Matplotlib}, \texttt{Scikit-learn} y \texttt{Seaborn}, ya que son herramientas accesibles que ayudan a la generación de este tipo de gráficos. %; en la figura \ref{serie_de_tiempo} se muestra un ejemplo de las series de tiempo generadas.
 
 %\begin{figure}[h!]
 %\setcounter{figure}{0} % por culpa de sciposter
@@ -83,7 +83,7 @@ Se realizan series de tiempo en \texttt{Python} con ayuda de la librería  \text
 %\end{figure}
 
 \subsubsection{Gráficos de radar}
-Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib} \ref{tab:Herramientas utilizadas}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
+Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
 
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
@@ -97,24 +97,26 @@ Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un
 
 \clearpage
 \subsection{Implementación de modelos}
-Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza \texttt{Python} y la librería \texttt{Statsmodels} \ref{tab:Herramientas utilizadas}. Los tipos de modelos generados se discuten a continuación.
+Después de haber generado gráficos para la visualización de la evolución de las variables, se procede a generar modelos para el estudio de la relación entre las variables. Para ello se utiliza \texttt{Python} y la librería \texttt{Statsmodels}. Los tipos de modelos generados se discuten a continuación.
 
 \subsubsection{Regresión lineal}
-Primeramente se calcula el coeficiente de correlación de Pearson, si el valor de la correlación se encuentre entre -1 y 1 significa que existe una dependencia lineal y que existe sustento para el modelo de regresión lineal. El modelo de regresión lineal arroja un valor de $R^2$ que indica en que grado la variable independiente explica la varianza de la variable dependiente. Además, se obtiene el valor $p$ que indica la relevancia del resultado y se obtiene la raíz de error cuadrático medio (RMSE) que indica cuantas unidades se alejan los valores predichos por el modelo de los valores reales, eso ayuda a determinar el error del modelo.
+Primeramente se calcula el coeficiente de correlación de Pearson y se verifica que esté entre -1 y 1. Si un valor es cercano a 0, quiere decir que no hay dependencia lineal. Si no hay una dependencia lineal no existe sustento para el modelo de regresión lineal. El modelo de regresión lineal arroja un valor de $R^2$ que indica en qué grado la variable independiente explica la varianza de la variable dependiente. Además, se obtiene el valor $p$ que indica la relevancia del resultado y se obtiene la raíz de error cuadrático medio (RMSE) que indica cuántas unidades se alejan los valores predichos por el modelo de los valores reales, eso ayuda a determinar el error del modelo.
 
 \subsubsection{Regresión lineal múltiple}
-En los modelos de regresión lineal múltiple se tiene más de una variable independiente. Al obtener el valor de la correlación entre -1 y 1 para verificar que existe sustento para el modelo de regresión lineal, se procede a generar el modelo de regresión lineal múltiple. El modelo de regresión lineal múltiple arroja un valor de $R^2$ que indica en que grado las variables independientes explican la varianza de la variable dependiente. Además, se obtiene el valor $p$ que indica la relevancia del resultado y se obtiene la raíz de error cuadrático medio (RMSE) que indica cuantas unidades se alejan los valores predichos por el modelo de los valores reales, eso ayuda a determinar el error del modelo.
+En los modelos de regresión lineal múltiple se tiene más de una variable independiente. Primero se calcula el coeficiente de correlación de Pearson y se verifica que hay una dependencia lineal para generar el modelo de regresión lineal múltiple. El modelo arroja un valor de $R^2$ que indica en qué grado las variables independientes explican la varianza de la variable dependiente. Además, se obtiene el valor $p$ que indica la relevancia del resultado y se obtiene la raíz de error cuadrático medio (RMSE) que indica cuántas unidades se alejan los valores predichos por el modelo de los valores reales, eso ayuda a determinar el error del modelo.
 
 \section{Implementación de la solución propuesta}
-En implementación de la solución propuesta se muestra el desarrollo realizado de los puntos planteados en la sección \ref{Diseño de la solución propuesta}. La figura \ref{Diagrama de flujo de las fases} muestra las fases seguidas para el desarrollo de la solución propuesta, la cual consiste en la generación de visualizaciones y modelos. El desarrollo del presente proyecto se encuentra en el siguiente repositorio Github: \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/}.
+En implementación de la solución propuesta se muestra el desarrollo realizado de los puntos planteados en la sección \ref{Diseño de la solución propuesta}. La figura \ref{Diagrama de flujo de las fases} muestra las fases seguidas para el desarrollo de la solución propuesta, la cual consiste en la generación de visualizaciones y modelos. El desarrollo del presente proyecto se encuentra en el siguiente repositorio de Github: \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/}.
 
-\begin{description}
-\item{En el fragmento de código \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas, esto para que los datos puedan ser utilizados para generar figuras y modelos de regresión lineal.}
-\item{El fragmento de código \ref{lst:c2} muestra como es que se generan las series de tiempo, esto después de haber procesado y agrupado los datos.}
-\item{El fragmento de código mostrado en \ref{lst:c3} genera una animación de gráficos de radar al ingresarle como parámetros los datos ya procesados y agrupados. Dicha animación es generada en formato .mp4 o .gif para poder visualizar la evolución de las variables por semana del año y contaminante.}
-\item{En el fragmento de código \ref{lst:c4} se muestra como son generados los modelos de regresión lineal después de obtener un coeficiente de correlación de Pearson entre -1 y 1.}
-\item{El fragmento de código \ref{lst:c5} muestra como se generan los modelos de regresión lineal múltiple después de generar los modelos de regresión lineal individuales. Todos los modelos generados por librería \texttt{Statsmodels} \ref{tab:Herramientas utilizadas} se guardan en formato .tex.}
-\end{description}
+En el fragmento de código \ref{lst:c1} se muestra el proceso realizado para el procesamiento y agrupamiento de los datos en semanas epidemiológicas, esto para que los datos puedan ser utilizados para generar figuras y modelos de regresión lineal.
+
+El fragmento de código \ref{lst:c2} muestra cómo es que se generan las series de tiempo, esto después de haber procesado y agrupado los datos.
+
+El fragmento de código mostrado en \ref{lst:c3} genera una animación de gráficos de radar al ingresarle como parámetros los datos ya procesados y agrupados. Dicha animación es generada en formato .mp4 o .gif para poder visualizar la evolución de las variables por semana del año y contaminante.
+
+En el fragmento de código \ref{lst:c4} se muestra cómo son generados los modelos de regresión lineal después de obtener un coeficiente de correlación de Pearson entre -1 y 1.
+
+El fragmento de código \ref{lst:c5} muestra cómo se generan los modelos de regresión lineal múltiple después de generar los modelos de regresión lineal individuales. Todos los modelos generados por librería \texttt{Statsmodels} se guardan en formato .tex.
 
 \begin{figure}[H]
   \resizebox{.75\columnwidth}{!}{
@@ -140,12 +142,12 @@ En implementación de la solución propuesta se muestra el desarrollo realizado 
  \path [line] (rl) -- (rlm);
  \path [line] (rlm) -- (end);
 \end{tikzpicture}}
-\caption{Fases del desarrollo de la solución}
+\caption{Fases del desarrollo de la solución.}
 \label{Diagrama de flujo de las fases}
 \end{figure}
 
 \clearpage
-\begin{lstlisting}[language=Python, caption=Procesamiento y agrupamiento de datos, label=lst:c1]
+\begin{lstlisting}[language=Python, caption=Procesamiento y agrupamiento de datos., label=lst:c1]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -192,7 +194,7 @@ for i in range (n):
 \end{lstlisting}
 
 \clearpage
-\begin{lstlisting}[language=Python, caption=Generación de series de tiempo, label=lst:c2]
+\begin{lstlisting}[language=Python, caption=Generación de series de tiempo., label=lst:c2]
 import pandas as pd
 from epiweeks import Week, date
 from sklearn import preprocessing
@@ -250,7 +252,7 @@ for name in diagnosticosaño.index:
 \end{lstlisting}
 
 \clearpage
-\begin{lstlisting}[language=Python, caption=Generación de graficos de radar, label=lst:c3]
+\begin{lstlisting}[language=Python, caption=Generación de graficos de radar., label=lst:c3]
 def create_spiderwebs(datasets, labels, lenlines, title, titles, spoke_labels, colors, typeframe, outputtype):
 
     N1 = len(datasets)
@@ -308,7 +310,7 @@ def create_spiderwebs(datasets, labels, lenlines, title, titles, spoke_labels, c
 \end{lstlisting}
 
 \clearpage
-\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal, label=lst:c4]
+\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal., label=lst:c4]
 # Gráfico
 fig, ax = plt.subplots(figsize=(6, 3.84))
 datos.plot(
@@ -368,7 +370,7 @@ rmse = mean_squared_error(
 \end{lstlisting}
 
 \clearpage
-\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal múltiple, label=lst:c5]
+\begin{lstlisting}[language=Python, caption=Generación de los modelos de regresión lineal múltiple., label=lst:c5]
 corr_matrix = datarlm.corr(method='pearson')
 corr_mat = corr_matrix.stack().reset_index()
 corr_mat.columns = ['variable_1','variable_2','r']

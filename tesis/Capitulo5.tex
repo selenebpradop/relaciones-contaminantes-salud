@@ -5,14 +5,14 @@ En el presente capítulo se presenta el diseño de los experimentos realizados a
 En esta sección se tratan los resultados obtenidos partiendo de desarrollar algunos experimentos que permiten determinar si la solución propuesta cumple con el objetivo planteado.
 
 \section{Diseño experimental}
-En la presente sección se discute el diseño de experimentos, es decir, que valores constantes fueron utilizados para su realización y por que se usan dichos valores.
+En la presente sección se discute el diseño de experimentos, es decir, qué valores constantes fueron utilizados para su realización y por qué se usan dichos valores.
 
 \subsection{Datos de entrada}
-Los datos de egresos hospitalarios de los años 2017 y 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10 y PM2.5 presentes en el área metropolitana de Monterrey, dichos registros son hechos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
+Los datos de egresos hospitalarios de los años 2017 y 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10 y PM2.5 presentes en el área metropolitana de Monterrey, dichos registros son obtenidos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
 
 \begin{description}
 \item [Selección de datos.] {Los conjuntos de datos por año de egresos hospitalarios contienen información de todos los estados de México, por lo cual se hace una limpieza de datos para solo obtener los registros de Nuevo León ya que de dicha entidad es de la cual se tienen los datos de contaminación.}
-\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE se obtiene el numero de egresos en cada semana del año.}
+\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE se obtiene el número de egresos en cada semana del año.}
 \item [Datos de los contaminantes.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Se obtiene el promedio del nivel del contaminante por cada semana del año.}
 \end{description}
 
@@ -24,12 +24,12 @@ Con los datos ya seleccionados y agrupados se procede a generar las visualizacio
 \begin{itemize}
 	\item El nombre del contaminante.
 	\item El año del que se quieren obtener las series de tiempo.
-	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor numero de egresos.
+	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor número de egresos.
 \end{itemize}
 
-\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un numero entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIE}. Las variables ajustables son:
+\item [Gráficos de radar.] {Los datos ya seleccionados y agrupados se normalizan teniendo como valor mínimo cero y como valor máximo un número entre uno y cuatro. Posteriormente se generan gráficos de radar de cada año por semana, en las que se muestra el nivel contaminante y la variación de las CIE}. Las variables ajustables son:
 \begin{itemize}
-    \item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor numero de egresos.
+    \item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor número de egresos.
 	\item Valor máximo que se utiliza para representar la longitud de los ejes en el gráfico.
 	\item Nombre de la figura.
 	\item Nombre de cada eje en el gráfico.
@@ -45,7 +45,7 @@ Se procede a generar los modelos. En cada modelo se tienen métricas para evalua
 Se tienen algunas variables que pueden ser modificadas para la generación de los modelos de regresión lineal.
 
 \begin{itemize}
-	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor numero de egresos.
+	\item Número de series de tiempo a generar por contaminante. Se parte de la CIE con mayor número de egresos.
 	\item Porcentaje de datos utilizados para el entrenamiento del modelo.
 	\item Nivel de significancia.
 \end{itemize}
@@ -61,14 +61,14 @@ También se tienen variables que indican información sobre la eficacia del mode
 
 \clearpage
 \section{Resultados}
-Establecidos las especificaciones de los experimentos que se realizan, se reportan los resultados obtenidos. Los experimentos se elaboran por contaminante, desglosando los resultados por año. En la carpeta \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/tree/main/figuras/} se encuentran animaciones en video de los gráficos de radar generados por contaminante y año y todas las imágenes de las series de tiempo obtenidas.
+Establecidas las especificaciones de los experimentos que se realizan, se reportan los resultados obtenidos. Los experimentos se elaboran por contaminante, desglosando los resultados por año. En la carpeta \url{https://github.com/selenebpradop/relaciones-contaminantes-salud/tree/main/figuras/} se encuentran animaciones en video de los gráficos de radar generados por contaminante y año y todas las imágenes de las series de tiempo obtenidas.
 
 % FORMULA PORCENTAJE ERROR
 \subsection{Experimento A: Datos de niveles de PM10}
 Se estudian los niveles del contaminante PM10 de los años 2017 y 2018. 
 
 \subsubsection{Año 2017}
-En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año. 
+En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2017} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
@@ -79,8 +79,6 @@ En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tie
     \caption[Series de tiempo 2017 PM10 y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
     \label{serie_de_tiempo_2017_PM10}
 \end{figure}
-
-En el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2017} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{table}[hbt!]
 \centering
@@ -112,7 +110,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultado
 \end{table}
 
 \begin{table}[hbt!]
-\caption{Resultados Regresión Lineal Múltiple PM10 2017}
+\caption{Resultados regresión lineal múltiple PM10 2017}
 \label{tab:RRLM PM10 2017}
 \begin{center}
 \begin{tabular}{lclc}
@@ -138,7 +136,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2017} se presentan los resultado
 
 \clearpage
 \subsubsection{Año 2018}
-En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año.
+En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2018} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{figure}[h!]
 \setcounter{figure}{1} % por culpa de sciposter
@@ -149,8 +147,6 @@ En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tie
     \caption[Series de tiempo 2018 PM10 y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo_2018_PM10}
 \end{figure}
-
-En el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM10 2018} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{table}[hbt!]
 \centering
@@ -182,7 +178,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultado
 \end{table}
 
 \begin{table}[hbt!]
-\caption{Resultados Regresión Lineal Múltiple PM10 2018}
+\caption{Resultados regresión lineal múltiple PM10 2018}
 \label{tab:RRLM PM10 2018}
 \begin{center}
 \begin{tabular}{lclc}
@@ -212,7 +208,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM10 2018} se presentan los resultado
 Se estudian los niveles del contaminante PM2.5 de los años 2017 y 2018.
 
 \subsubsection{Año 2017}
-En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año.
+En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2017} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{figure}[h!]
 \setcounter{figure}{2} % por culpa de sciposter
@@ -223,8 +219,6 @@ En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tie
     \caption[Series de tiempo 2017 PM2.5 y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
     \label{serie_de_tiempo_2017_PM25}
 \end{figure}
-
-En el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2017} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{table}[hbt!]
 \centering
@@ -256,7 +250,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultad
 \end{table}
 
 \begin{table}[hbt!]
-\caption{Resultados Regresión Lineal Múltiple PM2.5 2017}
+\caption{Resultados regresión lineal múltiple PM2.5 2017}
 \label{tab:RRLM PM2.5 2017}
 \begin{center}
 \begin{tabular}{lclc}
@@ -280,8 +274,9 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2017} se presentan los resultad
 \end{center}
 \end{table}
 
+\clearpage
 \subsubsection{Año 2018}
-En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor numero de egresos registrados en el conjunto de datos del año.
+En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tiempo generadas para la CIE con mayor número de egresos registrados en el conjunto de datos del año. Además, en el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2018} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{figure}[h!]
 \setcounter{figure}{3} % por culpa de sciposter
@@ -292,8 +287,6 @@ En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tie
     \caption[Series de tiempo 2018 PM2.5 y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo_2018_PM25}
 \end{figure}
-
-En el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultados obtenidos de los modelos de regresión lineal y la eficacia obtenida de dichos modelos. El cuadro \ref{tab:RRLM PM2.5 2018} muestra los resultados del modelo de regresión lineal múltiple.
 
 \begin{table}[hbt!]
 \centering
@@ -325,7 +318,7 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultad
 \end{table}
 
 \begin{table}[hbt!]
-\caption{Resultados Regresión Lineal Múltiple PM2.5 2018}
+\caption{Resultados regresión lineal múltiple PM2.5 2018}
 \label{tab:RRLM PM2.5 2018}
 \begin{center}
 \begin{tabular}{lclc}
@@ -352,16 +345,16 @@ En el cuadro \ref{tab:Resultados obtenidos PM2.5 2018} se presentan los resultad
 
 \clearpage
 \section{Discusión}
-Como se puede observar, en todos los experimentos se obtiene una correlación entre -1 y 1, lo cual indica que existe una correlación lineal entre los contaminantes estudiados y las CIE estudiadas.
+Como se puede observar, en todos los experimentos se obtiene una correlación entre -1 y 1 y diferente a 0, por lo tanto se pueden generar los modelos de regresión lineal.
 
-En el Experimento A el error RMSE en los modelos de regresión lineal varia entre 0.152 y 0.294, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo. 
+En el Experimento A el error RMSE en los modelos de regresión lineal varía entre 0.152 y 0.294, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo. 
 El valor de $R^2$ más alto en el año 2017 se encuentra en la CIE O759 con un valor $p$ de 0.029, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM10 en el año 2017. En el año 2018 el valor de $R^2$ más alto se encuentra en la CIE O342 con un valor $p$ de 0.044, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM10 en el año 2018.
 
-En el Experimento B el error RMSE en los modelos de regresión lineal varia entre 0.159 y 0.278, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo.
+En el Experimento B el error RMSE en los modelos de regresión lineal varía entre 0.159 y 0.278, lo cual indica que no todos los resultados alcanzan una fiabilidad mayor al 80\%, excepto en la CIE K802 en el año 2018 en la cual se encuentra el porcentaje de error más bajo.
 El valor de $R^2$ más alto en el año 2017 se encuentra en la CIE O759 con un valor $p$ de 0.032, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM2.5 en el año 2017. En el año 2018 el valor de $R^2$ más alto se encuentra en la CIE O342 con un valor $p$ de 0.013, sin embargo, en el modelo de regresión lineal múltiple se encuentra el valor de $R^2$ más alto para el contaminante PM2.5 en el año 2018.
 
 \clearpage
-Todos los experimentos son ejecutados en \texttt{Jupyter Notebook} \ref{tab:Herramientas utilizadas} en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
+Todos los experimentos son ejecutados en \texttt{Jupyter Notebook} en una laptop con las especificaciones del cuadro \ref{tab:Especificaciones técnicas del PC}.
 
 \begin{table}[H]
 	{\centering
