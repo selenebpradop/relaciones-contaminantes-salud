@@ -8,11 +8,11 @@ En esta sección se tratan los resultados obtenidos partiendo de desarrollar alg
 En la presente sección se discute el diseño de experimentos, es decir, qué valores constantes fueron utilizados para su realización y por qué se usan dichos valores.
 
 \subsection{Datos de entrada}
-Los datos de egresos hospitalarios de los años 2017 y 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10 y PM2.5 presentes en el área metropolitana de Monterrey, dichos registros son obtenidos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
+Los datos de egresos hospitalarios de los años 2017 y 2018 provienen de la base de datos de la Secretaría de Salud del Gobierno de México \cite{f1}. También se tienen registros de los niveles de PM10 y PM2.5 presentes en el área metropolitana de Monterrey, dichos registros son obtenidos por las estaciones de monitoreo pertenecientes al SIMA \cite{f2} mostradas en la figura \ref{estaciones} en la página \pageref{estaciones}. Los documentos con los datos son proporcionados por \citet{f3}.
 
 \begin{description}
 \item [Selección de datos.] {Los conjuntos de datos por año de egresos hospitalarios contienen información de todos los estados de México, por lo cual se hace una limpieza de datos para solo obtener los registros de Nuevo León ya que de dicha entidad es de la cual se tienen los datos de contaminación.}
-\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE se obtiene el número de egresos en cada semana del año.}
+\item [Datos de ingresos hospitalarios.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Por CIE se obtiene el número de egresos en cada semana del año ordenadas por el número de egresos en el año partiendo de la CIE con la mayor cantidad.}
 \item [Datos de los contaminantes.] {Se agrupan en semanas epidemiológicas para una mejor manipulación de ellos. Se obtiene el promedio del nivel del contaminante por cada semana del año.}
 \end{description}
 
@@ -73,7 +73,7 @@ En la figura \ref{serie_de_tiempo_2017_PM10} se muestra una de las series de tie
 \setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM10_O809_2017.eps}
+   \includegraphics[trim=61 0 0 0,clip,width=1\textwidth]{PM10_O809_2017.eps}
    \end{center}
     \caption[Series de tiempo 2017 PM10 y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
     \label{serie_de_tiempo_2017_PM10}
@@ -151,7 +151,7 @@ En la figura \ref{serie_de_tiempo_2018_PM10} se muestra una de las series de tie
 \setcounter{figure}{2} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM10_O809_2018.eps}
+   \includegraphics[trim=61 0 0 0,clip,width=1\textwidth]{PM10_O809_2018.eps}
    \end{center}
     \caption[Series de tiempo 2018 PM10 y O809]{Evolución de los niveles de PM10 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo_2018_PM10}
@@ -233,7 +233,7 @@ En la figura \ref{serie_de_tiempo_2017_PM25} se muestra una de las series de tie
 \setcounter{figure}{4} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM2_5_O809_2017.eps}
+   \includegraphics[trim=61 0 0 0,clip,width=1\textwidth]{PM2_5_O809_2017.eps}
    \end{center}
     \caption[Series de tiempo 2017 PM2.5 y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2017.}
     \label{serie_de_tiempo_2017_PM25}
@@ -311,7 +311,7 @@ En la figura \ref{serie_de_tiempo_2018_PM25} se muestra una de las series de tie
 \setcounter{figure}{6} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[width=1\textwidth]{PM2_5_O809_2018.eps}
+   \includegraphics[trim=61 0 0 0,clip,width=1\textwidth]{PM2_5_O809_2018.eps}
    \end{center}
     \caption[Series de tiempo 2018 PM2.5 y O809]{Evolución de los niveles de PM2.5 y el número de egresos diagnosticados con la CIE O809 en el 2018.}
     \label{serie_de_tiempo_2018_PM25}

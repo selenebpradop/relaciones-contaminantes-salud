@@ -48,8 +48,7 @@ Las herramientas utilizadas en la presente investigación se muestran en el cuad
 La primera fase es la recolección de datos. El objetivo es tener un archivo que contenga datos de los niveles de uno o más contaminantes del aire en años recientes y también del mismo lugar contar con datos del número de egresos hospitalarios durante esos años.
 
 \subsection{Selección y agrupación de datos}
-Después de la recolección de datos se seleccionan cuáles van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} que permite la manipulación de datos. 
-Para la selección y agrupación de datos se sigue el procedimiento mostrado en el algoritmo \ref{alg:a1}.
+Después de la recolección de datos se seleccionan cuáles van a ser utilizados para los experimentos. Para ello se utiliza \texttt{Python} con la librería \texttt{Pandas} que permite la manipulación de datos. Para la selección y agrupación de datos en semanas epidemiológicas se sigue el procedimiento mostrado en el algoritmo \ref{alg:a1}.
 
 \begin{algorithm}
 \caption{Selección y agrupamiento de datos}\label{alg:a1}
@@ -83,13 +82,15 @@ Se realizan series de tiempo en \texttt{Python} con ayuda de la librería  \text
 %\end{figure}
 
 \subsubsection{Gráficos de radar}
-Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados.
+Los gráficos de radar o diagramas de telaraña son otra manera de visualizar un conjunto de datos. Sirven para representar datos en un diagrama bidimensional cuando hay múltiples variables y para comparar variables visualizando si existen valores o patrones de evolución en el tiempo similares entre ellas. Se puede utilizar para graficar un grupo de variables o para comparar varios grupos de las mismas variables. Cada variable se grafica en ejes que se organizan equitativamente alrededor de un punto de origen central. Las líneas de cuadrícula conectan los ejes y al conectar cada grupo de variables en el gráfico, las conexiones forman un polígono.
+
+Es por ello que en el presente trabajo se elaboran gráficos de radar con ayuda de \texttt{Python} y las librerías \texttt{NumPy} y \texttt{Matplotlib}. En la figura \ref{grafico_de_telaraña} se muestra un ejemplo de los gráficos de telaraña generados. Para su interpretación: se identifica la categoría que representa cada eje, se determina cómo se relaciona cada categoría con las demás, se observa la forma completa creada, se lee alrededor de la rueda y se comparan los datos.
 
 \begin{figure}[h!]
 \setcounter{figure}{0} % por culpa de sciposter
 \captionsetup{type=figure} % por culpa de sciposter
 \begin{center}
-   \includegraphics[trim=0 0 0 74,clip,width=1\textwidth]{spiderweb_PM10_2018_1.eps}
+   \includegraphics[trim=0 0 0 38,clip,width=1\textwidth]{spiderweb_PM10_2018_1.eps}
    \end{center}
     \caption[Ejemplo de gráfico de radar]{Nivel del contaminante PM10 y egresos por CIE en la semana 1 del año 2018.}
     \label{grafico_de_telaraña}
